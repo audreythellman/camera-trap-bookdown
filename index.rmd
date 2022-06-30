@@ -1,0 +1,69 @@
+---
+title: "A Guide to an Image Processing Pipeline for Classification with Machine Learning"
+author: "Henry Sun, Biniam Garomsa, Hector Ontiveros"
+date: "`r Sys.Date()`"
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+```{r render-book, echo = FALSE}
+# bookdown::render_book("index.Rmd", "bookdown::gitbook")
+```
+
+# Introduction
+
+## About This Book
+
+This book was authored to serve as a basic guide for using our data pipeline to
+process raw images using ROI software, VIA image annotation, and a random forest machine
+learning model.
+
+Special thanks goes to Audrey Thellman and Weston Slaughter for their guidance and
+mentorship.  
+
+
+## Load Packages
+
+```{r load-packages}
+library(bookdown) 
+# Knits markdown files into a book
+library(reticulate)
+# Allows python code to be ran in an R environment
+```
+
+
+## Introduction 
+
+The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have collected images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product. However, our software can be viably used for any class of field image classification.
+
+
+```{r image-display, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics("./imgs/Hbwtr_w1_20200329_120457.JPG")
+#Update file path if needed - all images in imgs folder
+
+```
+
+
+## Data Pipeline Overview
+
+The data pipeline starts with raw images and finishes with a trained machine learning model
+which can classify pixels into groups of attributes. Each chapter of this book will
+cover one step in this pipeline.
+
+1. Renaming image files
+* In this step, raw images have their file names converted to contain useful information
+including time-series data
+2. Region of interest
+* To avoid interference from land/soil, select a polygonal region of interest containing
+the desired region 
+3. VIA image annotation
+* Using VGG image annotation software, classify pixels in masked images to serve as
+training data for the machine learning model
+4. Machine learning model
+* Run the images through a trained model which will predict ice and snow cover
+
+

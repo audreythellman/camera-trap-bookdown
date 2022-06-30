@@ -1,0 +1,10 @@
+book_filename: "image-processing-bookdown.Rmd"
+delete_merged_file: true
+edit: https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/%s
+view: https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/%s
+clean: ["my-book.bbl", "R-packages.bib"]
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Chapter "
+# rmd_files: ["bookdown/index.Rmd", "bookdown/01-intro.Rmd", "bookdown/02-roi.Rmd", "bookdown/03-annotateimg.Rmd"]

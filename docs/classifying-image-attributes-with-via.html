@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Classifying Image Attributes with VIA | A Guide to an Image Processing Pipeline for Classification with Machine Learning</title>
+  <meta name="description" content="Chapter 4 Classifying Image Attributes with VIA | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Classifying Image Attributes with VIA | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Classifying Image Attributes with VIA | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  
+  
+  
+
+<meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
+
+
+<meta name="date" content="2022-06-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="selecting-region-of-interest.html"/>
+<link rel="next" href="random-forest-image-classification.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-book"><i class="fa fa-check"></i><b>1.1</b> About This Book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#load-packages"><i class="fa fa-check"></i><b>1.2</b> Load Packages</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>1.3</b> Introduction</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-pipeline-overview"><i class="fa fa-check"></i><b>1.4</b> Data Pipeline Overview</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rename-raw-images.html"><a href="rename-raw-images.html"><i class="fa fa-check"></i><b>2</b> Rename Raw Images</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="rename-raw-images.html"><a href="rename-raw-images.html#mount-google-drive"><i class="fa fa-check"></i><b>2.0.1</b> Mount Google Drive</a></li>
+<li class="chapter" data-level="2.1" data-path="rename-raw-images.html"><a href="rename-raw-images.html#copying-files"><i class="fa fa-check"></i><b>2.1</b> Copying Files</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="rename-raw-images.html"><a href="rename-raw-images.html#load-packages-1"><i class="fa fa-check"></i><b>2.1.1</b> Load Packages</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rename-raw-images.html"><a href="rename-raw-images.html#copying-files-1"><i class="fa fa-check"></i><b>2.1.2</b> Copying Files</a></li>
+<li class="chapter" data-level="2.1.3" data-path="rename-raw-images.html"><a href="rename-raw-images.html#main-method"><i class="fa fa-check"></i><b>2.1.3</b> Main Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rename-raw-images.html"><a href="rename-raw-images.html#renaming-files"><i class="fa fa-check"></i><b>2.2</b> Renaming Files</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="rename-raw-images.html"><a href="rename-raw-images.html#manual-renames"><i class="fa fa-check"></i><b>2.2.1</b> Manual Renames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html"><i class="fa fa-check"></i><b>3</b> Selecting Region of Interest</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#roipoly-functionality"><i class="fa fa-check"></i><b>3.1</b> RoiPoly Functionality</a></li>
+<li class="chapter" data-level="3.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#preliminary-data-collection"><i class="fa fa-check"></i><b>3.2</b> Preliminary Data Collection</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#import-necessary-packages"><i class="fa fa-check"></i><b>3.2.1</b> Import necessary packages</a></li>
+<li class="chapter" data-level="3.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#loading-image-folder"><i class="fa fa-check"></i><b>3.2.2</b> Loading Image Folder</a></li>
+<li class="chapter" data-level="3.2.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#imagefile-class"><i class="fa fa-check"></i><b>3.2.3</b> ImageFile Class</a></li>
+<li class="chapter" data-level="3.2.4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#image-file-object-list"><i class="fa fa-check"></i><b>3.2.4</b> Image File Object List</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#first-roi-and-masking-function"><i class="fa fa-check"></i><b>3.3</b> First ROI and Masking Function</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#creating-first-region-of-interest"><i class="fa fa-check"></i><b>3.3.1</b> Creating First Region of Interest</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#masking"><i class="fa fa-check"></i><b>3.4</b> Masking</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#button-events"><i class="fa fa-check"></i><b>3.4.1</b> Button Events</a></li>
+<li class="chapter" data-level="3.4.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>3.4.2</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>4</b> Classifying Image Attributes with VIA</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-project"><i class="fa fa-check"></i><b>4.1</b> Creating Project</a></li>
+<li class="chapter" data-level="4.2" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-attributes"><i class="fa fa-check"></i><b>4.2</b> Creating Attributes</a></li>
+<li class="chapter" data-level="4.3" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#classify-pixels"><i class="fa fa-check"></i><b>4.3</b> Classify Pixels</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html"><i class="fa fa-check"></i><b>5</b> Random Forest Image Classification</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Guide to an Image Processing Pipeline for Classification with Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="classifying-image-attributes-with-via" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Classifying Image Attributes with VIA<a href="classifying-image-attributes-with-via.html#classifying-image-attributes-with-via" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>After completing image masking, the next step is done entirely in VGG Image Annotator.
+This is an HTML software found online, and the demo can be accessed <a href="https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html">here</a>. It should look like this:</p>
+<p><img src="imgs/VIASoftware.png" width="1440" /></p>
+<div id="creating-project" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Creating Project<a href="classifying-image-attributes-with-via.html#creating-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If a project already exists, navigate to the project tab in the menu bar and click
+load project to load in a preexisting .json file. Otherwise, remove the demo images
+and upload your own images using <strong>add files</strong>.</p>
+<p>At any point during annotation, these files may be saved into a .json project using
+<strong>Project &gt; Save</strong> from the menu bar.</p>
+</div>
+<div id="creating-attributes" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Creating Attributes<a href="classifying-image-attributes-with-via.html#creating-attributes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To create attributes for pixel classification, navigate to the bottom left-hand side
+of the screen to name and assign characteristics for the attribute.</p>
+<p>In our project, the classified images outputted from VIA became the <em>training data</em> for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
+including <code>ice_t</code> (transparent ice), <code>leaf_green</code>, <code>leaf_fall</code>, <code>open_water</code>, and
+<code>snow_o</code> (opaque snow), among others.</p>
+<p>To load the attributes that we used in our project, clicking this <a href="./imgs/hbwater_cameratrap_demo.json">link</a> will open a text file. Copy the contents
+of this file and save it as a <code>.json</code> file. Then, select load project from the menu bar,
+and upload the <code>.json</code> file.</p>
+</div>
+<div id="classify-pixels" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Classify Pixels<a href="classifying-image-attributes-with-via.html#classify-pixels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Classify pixels by dragging and clicking on the image to create boxes or shapes
+using the desired <strong>region shape</strong>, and then assigning them to attributes.
+Repeat this process for all images in the folder, and export your annotations as a
+<code>.json</code> or <code>.csv</code> file. See below for an example using VIA’s demo file.</p>
+<p><img src="imgs/viademo.png" width="1108" /></p>
+<p>If you must stop midway, save your project by clicking on the <strong>Settings</strong> pane
+in the menu bar and following the instructions. This will allow you to load in
+your previously saved progress directly in the future.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="selecting-region-of-interest.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-forest-image-classification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/03-annotateimg.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/03-annotateimg.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
