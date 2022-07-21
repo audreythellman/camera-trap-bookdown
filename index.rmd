@@ -14,6 +14,13 @@ output:
 # bookdown::render_book("index.Rmd", "bookdown::gitbook")
 ```
 
+```{r load-packages, echo = FALSE}
+library(bookdown) 
+# Knits markdown files into a book
+library(reticulate)
+# Allows python code to be ran in an R environment
+```
+
 # Introduction
 
 ## About This Book
@@ -26,19 +33,11 @@ Special thanks goes to Audrey Thellman and Weston Slaughter for their guidance a
 mentorship.  
 
 
-## Load Packages
-
-```{r load-packages}
-library(bookdown) 
-# Knits markdown files into a book
-library(reticulate)
-# Allows python code to be ran in an R environment
-```
-
-
 ## Introduction 
 
-The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have collected images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product. However, our software can be viably used for any class of field image classification.
+The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers. 
+
+Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have taken images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product. 
 
 
 ```{r image-display, echo=FALSE, message=FALSE, warning=FALSE}
@@ -46,6 +45,18 @@ knitr::include_graphics("./imgs/Hbwtr_w1_20200329_120457.JPG")
 #Update file path if needed - all images in imgs folder
 
 ```
+
+
+## How to Use This Book
+
+The data pipeline referenced in this book was originally designed for use by scientists studying field camera images at Hubbard Brook Experimental Forest. However, our software can be viably used for classification with other types of field images.
+
+Each chapter will provide a broad overview with instructions on applying our data pipeline for generalized applications. Instructions for Hubbard Brook users (with images stored)
+in Google Drive will be kept separate from instructions for users with other types of images,
+as modifications to the scripts will likely be required when processing different images.
+
+More information about our pipeline and its functionality can be found in the documentation
+for each script, or on our GitHub repo [here](https://github.com/audreythellman/hbwater_cameratrap_pheno).
 
 
 ## Data Pipeline Overview

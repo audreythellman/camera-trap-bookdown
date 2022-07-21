@@ -10,4 +10,3 @@ knitr::include_graphics("./imgs/image_of_leaves.png")
 
 ```
  
- 

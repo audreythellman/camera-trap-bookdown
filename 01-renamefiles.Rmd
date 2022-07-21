@@ -1,35 +1,12 @@
 # Rename Raw Images
 
-Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers,
-following this step, they will contain information about the watershed the photo
-was taken at as well as time-series image metadata.
+Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.
 
-These steps were designed to process files stored in a shared Google Drive. Before renaming images contained in a local directory, modifications to the script will need to be made; 
-however, the same general principles will still apply.
-
-### Mount Google Drive
-
-```{python, eval = FALSE}
-# This will connect to your Google Drive. It will ask you to allow access
-drive.mount('/content/drive', force_remount=True)
-
-```
+These steps were designed to process files stored in a shared Google Drive by
+running the script in *Google Colaboratory*. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see **Section 1.2**. 
 
 
-When using Google Colaboratory, before performing any file operations, you must *mount* your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.
-
-Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).
-
-```{r image, echo = FALSE}
-knitr::include_graphics("./imgs/contentdrive.png")
-#Update file path if needed - all images in imgs folder
-
-```
-
-
-## Copying Files
-
-This preliminary step is used when a backup or copy of the original data is needed. It will copy all files in the source directory not present in the target directory. 
+## Google Drive Files
 
 ### Load Packages
 
@@ -50,8 +27,28 @@ from glob import glob
 
 ```
 
+### Mount Google Drive
+
+```{python, eval = FALSE}
+# This will connect to your Google Drive. It will ask you to allow access
+drive.mount('/content/drive', force_remount=True)
+
+```
+
+When using Google Colaboratory, before performing any file operations, you must *mount* your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.
+
+Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab’s sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).
+
+```{r image, echo = FALSE}
+knitr::include_graphics("./imgs/contentdrive.png")
+#Update file path if needed - all images in imgs folder
+
+```
+
 
 ### Copying Files
+
+This preliminary step is used when a backup or copy of the original data is needed. It will copy all files in the source directory not present in the target directory. 
 
 This method uses shutil’s `copytree` function, which blanket copies all files within a specified directory. To handle issues caused by direct copying of files versus copying of subdirectories, these are copied separate from each other within the code. 
 
@@ -74,10 +71,9 @@ else:
   
 ```
 
-
 Copying **any** Google files, be it Google Docs, Slides, Sheets, Drawings, etc. must be done manually as these files are special and not able to be copied using shutil^[For more information, see the comments within the script and text blocks in the Jupyter Notebook.]. For any additional file extensions to avoid copying, specify them as arguments for `shutil.ignore_patterns`.
 
-### Main Method
+#### Main Method
 
 Finally, to copy the files, simply call `copy_files` within the main method. This method takes 3 arguments – the file path for the source folder, the file path for the destination folder, and a folder name for the folder created if the source and destination directories share no files.  
 
@@ -88,22 +84,15 @@ copy_files(*args)
 ```
 
 
-## Renaming Files
+### Renaming Files
 
 The renaming files script takes advantage of the **Tesseract OCR Engine** to read
-the time stamp on the image. This string is then parsed to generate time series
-information. There are many complementary methods in this script; for more information,
-see documentation within the script itself. 
+the time stamp on the image. This string is then parsed to generate time series information. There are many complementary methods in this script; for more information, see documentation within the script itself. 
 
 Be sure to allocate time for the script to run, especially on folders containing
-large amounts of image files^[If you are looking to reduce the script's runtime, one method
-is to remove the loop within `extract_timeStamp` which searches multiple times for the
-correct timestamp if it is not found initially. However, this will increase the number
-of files which failed to be renamed correctly.] 
+large amounts of image files^[If you are looking to reduce the script's runtime, one method is to remove the loop within `extract_timeStamp` which searches multiple times for the correct timestamp if it is not found initially. However, this will increase the number of files which failed to be renamed correctly.] 
 
-Additionally, the pixel parameters within `extract_timeStamp` are designed for
-the images taken by the field cameras used in our study. These will have to be manually
-*adjusted* for images with time series information contained elsewhere.
+The pixel parameters within `extract_timeStamp` are designed for the images taken by the Bushnell field cameras used in our study.
 
 
 ```{python extract-timestamp, eval = FALSE}
@@ -160,9 +149,7 @@ def extract_timeStamp(pic_address):
 
 ```
   
-As with before, make sure Google Drive is mounted, and all relevant packages/libraries are
-imported. Then, update the file paths^[It may be a good idea to remove or make a note of any 
-non-image files within the folder, as these will throw errors.] and run the main method (below).
+As with before, make sure Google Drive is mounted, and all relevant packages/libraries are imported. Then, update the file paths^[It may be a good idea to remove or make a note of any non-image files within the folder, as these will throw errors.] and run the main method (below).
   
 ```{python main-method-rename-images, eval = FALSE}
 from glob import glob
@@ -201,10 +188,8 @@ for folder in folder_list:
   rename_images(folder, fdr_name, fdr_dst, file_df = file_df)
 ```
 
-
 The script generates a pandas dataframe which contains the old filename,
-new filename, folder name containing the image, as well as the image **status** (whether
-or not it was renamed successfully). This dataframe is then exported to a `.csv` file in a user-specified destination. See below for an example.
+new filename, folder name containing the image, as well as the image **status** (whether or not it was renamed successfully). This dataframe is then exported to a `.csv` file in a user-specified destination. See below for an example.
 
 ```{python csv-file, eval=FALSE}
 file_df = pd.DataFrame(file_names_list, columns = ["old_name", "new_name","status", "note","old_folder"])
@@ -219,11 +204,10 @@ knitr::include_graphics("./imgs/dataframe.png")
 ```
 
 
-### Manual Renames
+#### Manual Renames
 
 While this script works for the vast majority of images, occasionally some images
-will fail to rename correctly. For any files where the timestamp generated a file name 
-which does not match a valid date, run the below chunk of code to identify them.
+will fail to rename correctly. For any files where the timestamp generated a file name which does not match a valid date, run the below chunk of code to identify them.
 
 ```{python identify-invalid-date, eval = FALSE}
 # Load in created csv, returns file name and path if extracted timestamp is not in range
@@ -243,6 +227,104 @@ for index, row in file_df.iterrows():
 ```
 
 Another common occurrence is when the timestamp failed to generate altogether due
-to `pytesseract.image_to_string` failing. This is sometimes unavoidable and requires manual renaming of the file. However, this should not be a frequent occurrence due to the built-in
-loop in `extract_timeStamp`.
+to `pytesseract.image_to_string` failing. This is sometimes unavoidable and requires manual renaming of the file. However, this should not be a frequent occurrence due to the built-in loop in `extract_timeStamp`.
 
+
+## Local Files
+
+This section covers how to run the `copy_files` method and `rename_script` script
+on files contained in a local directory. This is **especially** relevant for users 
+aiming to rename images that are not from Hubbard Brook experimental forest, and/or
+do not meet the specifications of our script (i.e the timestamp is located at a
+different position on the image, or )
+
+
+### Load Packages
+
+When using files on your local computer, first install `pytesseract` - documentation
+and more information on how to do this is available [here](https://pypi.org/project/pytesseract/). Then, load all packages as needed.
+
+```{python local-python-packages, eval = FALSE}
+
+import pytesseract
+import numpy as np
+import pandas as pd
+import re
+import os
+import shutil
+from glob import glob
+
+```
+
+
+### Copying Files
+
+The `shutil` and `os` libraries can be used in the same manner on a local machine
+as in Google Drive. Therefore, no modifications are required to run the `copy_files` method on local files on your computer. Refer to the instructions above in section **1.1.3**. Ensure the path arguments in the main method map to directories stored in your local machine. 
+
+
+### Renaming Files
+
+The script for renaming files is designed with Hubbard Brook images in mind. The format for an image's new name is Hbwtr_*watershed number*_*date*_*time*.JPG.
+The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.
+
+If you would like to follow a different naming convention, the below method must be
+changed (`generate_picName`) to reflect that. For example, changing `new_name` to `"Watershed"ws_num +'_' + date + .'jpg'"` would output *Watershed9_12042020.jpg* for an image taken on December 4th, 2020 at Watershed no. 9. 
+
+```{python change-name-format, eval=FALSE}
+def generate_picName(fdr_name, tStamp):
+  ws_num = fdr_name[1] #!!!this should be changed if src_elements[-2][1] will not be watershed number!!
+
+  stamp_elements = re.split('[\n: -]', tStamp)
+  date = stamp_elements[2] + stamp_elements[0] + stamp_elements[1]
+  time = stamp_elements[3] + stamp_elements[4] + stamp_elements[5]
+
+  new_name = "Hbwtr_w" + ws_num + '_' + date + '_' + time + '.JPG'
+  return new_name
+
+
+```
+
+
+#### Changing Timestamp
+
+The most complicated and error-prone step in the renaming process is extracting a timestamp. The way it is done in the current code is by starting with the pixel location of the timestamp, attempting to read the timestamp with `image_to_string`, and zooming out if the timestamp
+
+```{python timestamp-loop, eval=FALSE}
+    loop = 1
+    size_extension=0
+    x,y,z = np.shape(img)
+    x = (x//1000)*1000
+    y = (y//1000)*1000
+    # print(x,y,z)
+    while loop>0:
+      ts = img[2352 - size_extension:, 2000-size_extension:, :] #(change if sizing conventions change!)
+      text = pytesseract.image_to_string(ts)
+      match_date_format = re.search(date_pattern,text)
+      if match_date_format:
+        # found timestamp, return
+        break
+      ts_2 = img[x - size_extension:, x-size_extension:, :] #(change if sizing conventions change!)
+      text_2= pytesseract.image_to_string(ts_2)
+      match_date_format = re.search(date_pattern,text_2)
+      if match_date_format:
+        # found timestamp, return
+        break
+      size_extension+=100
+      loop-=1
+
+    if loop ==0:      
+      # reached end of loop without finding correct timestamp
+      print("Correct timestamp not found")
+```
+
+Our script is only able to extract the timestamp if it is present within the image.
+If the image you use does not contain any time-series data, we recommend removing the `extract_timeStamp` method and changing the file naming format to reflect that.
+
+After these changes are made, the script should again function identically to
+the one housed in Google Colab. Update the file path and run the main method to
+rename your files.
+
+The script will occasionally throw some unavoidable errors, such as the `image_to_string` method failing to extract a timestamp. To deal
+with these fringe cases, see **section 1.1.4.1** (Manual Renames) above.
