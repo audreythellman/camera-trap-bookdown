@@ -32,3 +32,10 @@ creating-attributes
 classify-pixels
 for-hubbard-brook-users
 random-forest-image-classification
+introduction-to-random-forest
+using-the-script-1
+data-preparation
+hyperparameter-tuning
+training-random-forest-model
+generating-reclassified-images
+future-improvements
