@@ -92,7 +92,7 @@ the time stamp on the image. This string is then parsed to generate time series 
 Be sure to allocate time for the script to run, especially on folders containing
 large amounts of image files^[If you are looking to reduce the script's runtime, one method is to remove the loop within `extract_timeStamp` which searches multiple times for the correct timestamp if it is not found initially. However, this will increase the number of files which failed to be renamed correctly.] 
 
-The pixel parameters within `extract_timeStamp` are designed for the images taken by the Bushnell field cameras used in our study.
+The pixel parameters within `extract_timeStamp` are designed for the images taken by the Bushnell field cameras used in our study. They may need to be edited manually for other classes of images. Pixel coordinates are identified with a pair of integers [x,y] where x is the column number and y is the row number. On a pixel grid, the origin is at the top left of the image. Pixel row values go from top to bottom, whereas pixel column values go from left to right.
 
 
 ```{python extract-timestamp, eval = FALSE}
@@ -236,7 +236,7 @@ This section covers how to run the `copy_files` method and `rename_script` scrip
 on files contained in a local directory. This is **especially** relevant for users 
 aiming to rename images that are not from Hubbard Brook experimental forest, and/or
 do not meet the specifications of our script (i.e the timestamp is located at a
-different position on the image, or )
+different position on the image).
 
 
 ### Load Packages

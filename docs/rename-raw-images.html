@@ -23,7 +23,7 @@
 <meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -272,7 +272,7 @@ running the script in <em>Google Colaboratory</em>. Before renaming images conta
 the time stamp on the image. This string is then parsed to generate time series information. There are many complementary methods in this script; for more information, see documentation within the script itself.</p>
 <p>Be sure to allocate time for the script to run, especially on folders containing
 large amounts of image files<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>The pixel parameters within <code>extract_timeStamp</code> are designed for the images taken by the Bushnell field cameras used in our study.</p>
+<p>The pixel parameters within <code>extract_timeStamp</code> are designed for the images taken by the Bushnell field cameras used in our study. They may need to be edited manually for other classes of images. Pixel coordinates are identified with a pair of integers [x,y] where x is the column number and y is the row number. On a pixel grid, the origin is at the top left of the image. Pixel row values go from top to bottom, whereas pixel column values go from left to right.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="rename-raw-images.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_timeStamp(pic_address):</span>
 <span id="cb5-2"><a href="rename-raw-images.html#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39;&#39;&#39;</span></span>
 <span id="cb5-3"><a href="rename-raw-images.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extract time Stamp from picture file.</span></span>
@@ -392,7 +392,7 @@ to <code>pytesseract.image_to_string</code> failing. This is sometimes unavoidab
 on files contained in a local directory. This is <strong>especially</strong> relevant for users
 aiming to rename images that are not from Hubbard Brook experimental forest, and/or
 do not meet the specifications of our script (i.e the timestamp is located at a
-different position on the image, or )</p>
+different position on the image).</p>
 <div id="load-packages-1" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Load Packages<a href="rename-raw-images.html#load-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When using files on your local computer, first install <code>pytesseract</code> - documentation
