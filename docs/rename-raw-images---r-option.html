@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Rename Raw Images - R option | A Guide to an Image Processing Pipeline for Classification with Machine Learning</title>
+  <meta name="description" content="Chapter 2 Rename Raw Images - R option | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Rename Raw Images - R option | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Rename Raw Images - R option | A Guide to an Image Processing Pipeline for Classification with Machine Learning" />
+  
+  
+  
+
+<meta name="author" content="Henry Sun, Biniam Garomsa, Hector Ontiveros" />
+
+
+<meta name="date" content="2024-05-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="rename-raw-images--python-option.html"/>
+<script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="book_assets/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="book_assets/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-book"><i class="fa fa-check"></i><b>1.1</b> About This Book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>1.3</b> How to Use This Book</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-pipeline-overview"><i class="fa fa-check"></i><b>1.4</b> Data Pipeline Overview</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rename-raw-images---r-option.html"><a href="rename-raw-images---r-option.html"><i class="fa fa-check"></i><b>2</b> Rename Raw Images - R option</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rename-raw-images---r-option.html"><a href="rename-raw-images---r-option.html#google-drive-files"><i class="fa fa-check"></i><b>2.1</b> Google Drive Files</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="rename-raw-images---r-option.html"><a href="rename-raw-images---r-option.html#load-packages-and-fucntions"><i class="fa fa-check"></i><b>2.1.1</b> Load Packages and Fucntions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rename-raw-images---r-option.html"><a href="rename-raw-images---r-option.html#renaming-files-using-local-folder-directory"><i class="fa fa-check"></i><b>2.2</b> Renaming files using local folder directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html"><i class="fa fa-check"></i><b>3</b> Rename Raw Images- Python Option</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#google-drive-files-1"><i class="fa fa-check"></i><b>3.1</b> Google Drive Files</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#load-packages"><i class="fa fa-check"></i><b>3.1.1</b> Load Packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#mount-google-drive"><i class="fa fa-check"></i><b>3.1.2</b> Mount Google Drive</a></li>
+<li class="chapter" data-level="3.1.3" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#copying-files"><i class="fa fa-check"></i><b>3.1.3</b> Copying Files</a></li>
+<li class="chapter" data-level="3.1.4" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#renaming-files"><i class="fa fa-check"></i><b>3.1.4</b> Renaming Files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#local-files"><i class="fa fa-check"></i><b>3.2</b> Local Files</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#load-packages-1"><i class="fa fa-check"></i><b>3.2.1</b> Load Packages</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#copying-files-1"><i class="fa fa-check"></i><b>3.2.2</b> Copying Files</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rename-raw-images--python-option.html"><a href="rename-raw-images--python-option.html#renaming-files-1"><i class="fa fa-check"></i><b>3.2.3</b> Renaming Files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html"><i class="fa fa-check"></i><b>4</b> Selecting Region of Interest</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#using-the-script"><i class="fa fa-check"></i><b>4.1</b> Using the Script</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#import-packages"><i class="fa fa-check"></i><b>4.1.1</b> Import Packages</a></li>
+<li class="chapter" data-level="4.1.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#set-folder-path"><i class="fa fa-check"></i><b>4.1.2</b> Set Folder Path</a></li>
+<li class="chapter" data-level="4.1.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#drawing-rois"><i class="fa fa-check"></i><b>4.1.3</b> Drawing ROIs</a></li>
+<li class="chapter" data-level="4.1.4" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#output"><i class="fa fa-check"></i><b>4.1.4</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#roipoly-functionalities"><i class="fa fa-check"></i><b>4.2</b> RoiPoly Functionalities</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#imagefile-class"><i class="fa fa-check"></i><b>4.2.1</b> ImageFile Class</a></li>
+<li class="chapter" data-level="4.2.2" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#first-roi-and-masking-function"><i class="fa fa-check"></i><b>4.2.2</b> First ROI and Masking Function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="selecting-region-of-interest.html"><a href="selecting-region-of-interest.html#documentation"><i class="fa fa-check"></i><b>4.3</b> Documentation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html"><i class="fa fa-check"></i><b>5</b> Classifying Image Attributes with VIA</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-project"><i class="fa fa-check"></i><b>5.1</b> Creating Project</a></li>
+<li class="chapter" data-level="5.2" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#creating-attributes"><i class="fa fa-check"></i><b>5.2</b> Creating Attributes</a></li>
+<li class="chapter" data-level="5.3" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#classify-pixels"><i class="fa fa-check"></i><b>5.3</b> Classify Pixels</a></li>
+<li class="chapter" data-level="5.4" data-path="classifying-image-attributes-with-via.html"><a href="classifying-image-attributes-with-via.html#for-hubbard-brook-users"><i class="fa fa-check"></i><b>5.4</b> For Hubbard Brook Users</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html"><i class="fa fa-check"></i><b>6</b> Random Forest Image Classification</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#introduction-to-random-forest"><i class="fa fa-check"></i><b>6.1</b> Introduction to Random Forest</a></li>
+<li class="chapter" data-level="6.2" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#using-the-script-1"><i class="fa fa-check"></i><b>6.2</b> Using the Script</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#data-preparation"><i class="fa fa-check"></i><b>6.2.1</b> Data Preparation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#hyperparameter-tuning"><i class="fa fa-check"></i><b>6.2.2</b> Hyperparameter Tuning</a></li>
+<li class="chapter" data-level="6.2.3" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#training-random-forest-model"><i class="fa fa-check"></i><b>6.2.3</b> Training Random Forest Model</a></li>
+<li class="chapter" data-level="6.2.4" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#generating-reclassified-images"><i class="fa fa-check"></i><b>6.2.4</b> Generating Reclassified Images</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="random-forest-image-classification.html"><a href="random-forest-image-classification.html#future-improvements"><i class="fa fa-check"></i><b>6.3</b> Future Improvements</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Guide to an Image Processing Pipeline for Classification with Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rename-raw-images---r-option" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Rename Raw Images - R option<a href="rename-raw-images---r-option.html#rename-raw-images---r-option" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.</p>
+<p>These steps were designed to process files stored in a shared Google Drive by identifying the <em>folder</em> location as a google drive id, which can be found as the last section within the google drive URL.For example the bolded section within the following URL is the google drive folder id “<a href="https://drive.google.com/drive/u/0/folders/*12oN46qMczIh6zsQXxb1Dl9aVuH3a5p7a" class="uri">https://drive.google.com/drive/u/0/folders/*12oN46qMczIh6zsQXxb1Dl9aVuH3a5p7a</a>*. This is the same for the desired final folder location.</p>
+<p>We have also included the ability to use local directory for images. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see <strong>Section 1.2</strong>.</p>
+<div id="google-drive-files" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Google Drive Files<a href="rename-raw-images---r-option.html#google-drive-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="load-packages-and-fucntions" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Load Packages and Fucntions<a href="rename-raw-images---r-option.html#load-packages-and-fucntions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>#Shared Google Drive Workflow</p>
+<p>The following workflow is set to the folders associated with Stream Field Camera Uploads to Hubbard Brook Rosi (HB WatER) Google Drive. Modify the google drive folder id and shared_drive details if a different drive is being used. The user must have authorized access to the Hubbard Brook Rosi (HB WatER) folder to use the following chunk, and will be asked to authorize using their associated Google account login.</p>
+<p>The workflow is set up to rename <em>and move</em> the images, please double check locations are correct.</p>
+<p>The script for renaming files is designed with Hubbard Brook images in mind. The format for an image’s new name is Hbwtr_<em>watershed number</em>_<em>date</em>_<em>time</em>.JPG.
+The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.Therefore, all folders that contain images <em>must start with the watershed id</em>, for example “W2_”, the remaining folder names are not utilized.</p>
+<p>Files will be renamed within the folder structure, the output file will contain the original folder name, the renamed file, and associated information, and will be placed in the working directory.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rename-raw-images---r-option.html#cb1-1" tabindex="-1"></a><span class="co">#Updating for R</span></span>
+<span id="cb1-2"><a href="rename-raw-images---r-option.html#cb1-2" tabindex="-1"></a><span class="co"># Authorize Google Drive Connection </span></span>
+<span id="cb1-3"><a href="rename-raw-images---r-option.html#cb1-3" tabindex="-1"></a><span class="co"># Will ask user for Oauth access credentials</span></span>
+<span id="cb1-4"><a href="rename-raw-images---r-option.html#cb1-4" tabindex="-1"></a><span class="fu">drive_auth</span>(<span class="at">use_oob =</span> <span class="cn">TRUE</span>, <span class="at">cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a href="rename-raw-images---r-option.html#cb1-5" tabindex="-1"></a>info <span class="ot">&lt;-</span> <span class="fu">drive_about</span>()</span>
+<span id="cb1-6"><a href="rename-raw-images---r-option.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="rename-raw-images---r-option.html#cb1-7" tabindex="-1"></a><span class="co">#Newly_uploaded_data folder is &quot;1__cu4PCaLqcrIRTcbnjv1kcQeBoT03jI&quot;</span></span>
+<span id="cb1-8"><a href="rename-raw-images---r-option.html#cb1-8" tabindex="-1"></a>folder_df <span class="ot">=</span> <span class="fu">drive_ls</span>(<span class="fu">as_id</span>(<span class="st">&quot;1__cu4PCaLqcrIRTcbnjv1kcQeBoT03jI&quot;</span>), <span class="at">shared_drive =</span> <span class="st">&quot;Hubbard Brook Rosi (HB WatER)&quot;</span>)</span>
+<span id="cb1-9"><a href="rename-raw-images---r-option.html#cb1-9" tabindex="-1"></a>all_folder_Dir <span class="ot">=</span> folder_df[[<span class="st">&#39;name&#39;</span>]][<span class="fu">grepl</span>(<span class="st">&quot;^W.*&quot;</span>, folder_df[[<span class="st">&#39;name&#39;</span>]])]  <span class="co">#folders that start with W. </span></span>
+<span id="cb1-10"><a href="rename-raw-images---r-option.html#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="rename-raw-images---r-option.html#cb1-11" tabindex="-1"></a><span class="co">#Desired Location for Renamed Images</span></span>
+<span id="cb1-12"><a href="rename-raw-images---r-option.html#cb1-12" tabindex="-1"></a>new_folder_df <span class="ot">=</span> <span class="fu">drive_ls</span>(<span class="fu">as_id</span>(<span class="st">&quot;19DyxgtprkcqbDBuKmMioJg6B86oXDa9K&quot;</span>), <span class="at">shared_drive =</span> <span class="st">&quot;Hubbard Brook Rosi (HB WatER)&quot;</span>)</span>
+<span id="cb1-13"><a href="rename-raw-images---r-option.html#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="rename-raw-images---r-option.html#cb1-14" tabindex="-1"></a><span class="co">#Set up tempfile</span></span>
+<span id="cb1-15"><a href="rename-raw-images---r-option.html#cb1-15" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.jpeg&quot;</span>)</span>
+<span id="cb1-16"><a href="rename-raw-images---r-option.html#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="rename-raw-images---r-option.html#cb1-17" tabindex="-1"></a><span class="co"># iterate through all folders available that start with W - the folder nomenclature has to be W then the number of the watershed &quot;W#&quot;</span></span>
+<span id="cb1-18"><a href="rename-raw-images---r-option.html#cb1-18" tabindex="-1"></a>mv_projectdir <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_folder_Dir, <span class="cf">function</span>(folder_dir){ <span class="co">#testing &quot;W9 GC Channel 11-6-20 thru 5-9-21&quot;</span></span>
+<span id="cb1-19"><a href="rename-raw-images---r-option.html#cb1-19" tabindex="-1"></a>    <span class="fu">print</span>(folder_dir)</span>
+<span id="cb1-20"><a href="rename-raw-images---r-option.html#cb1-20" tabindex="-1"></a>  <span class="co">#For shared google drive runs  </span></span>
+<span id="cb1-21"><a href="rename-raw-images---r-option.html#cb1-21" tabindex="-1"></a>    folder_nm <span class="ot">&lt;-</span> folder_dir <span class="co">#name</span></span>
+<span id="cb1-22"><a href="rename-raw-images---r-option.html#cb1-22" tabindex="-1"></a>  <span class="co">#Find google drive id for folder with saved images</span></span>
+<span id="cb1-23"><a href="rename-raw-images---r-option.html#cb1-23" tabindex="-1"></a>    folder_id <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(folder_df, name <span class="sc">==</span> folder_dir)<span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="rename-raw-images---r-option.html#cb1-24" tabindex="-1"></a>    <span class="fu">as_id</span>(id) <span class="co">#drive folder id</span></span>
+<span id="cb1-25"><a href="rename-raw-images---r-option.html#cb1-25" tabindex="-1"></a>    watershed_id <span class="ot">=</span> <span class="fu">str_sub</span>(folder_nm, <span class="dv">1</span>, <span class="dv">2</span>) <span class="co">#watershed based on first two characters</span></span>
+<span id="cb1-26"><a href="rename-raw-images---r-option.html#cb1-26" tabindex="-1"></a>    <span class="fu">print</span>(watershed_id)</span>
+<span id="cb1-27"><a href="rename-raw-images---r-option.html#cb1-27" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="rename-raw-images---r-option.html#cb1-28" tabindex="-1"></a>    <span class="co">#location where all images should be saved to</span></span>
+<span id="cb1-29"><a href="rename-raw-images---r-option.html#cb1-29" tabindex="-1"></a>    new_img_folder <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(new_folder_df, name <span class="sc">==</span> watershed_id)<span class="sc">%&gt;%</span></span>
+<span id="cb1-30"><a href="rename-raw-images---r-option.html#cb1-30" tabindex="-1"></a>      <span class="fu">as_id</span>(id) <span class="co">#output folder id</span></span>
+<span id="cb1-31"><a href="rename-raw-images---r-option.html#cb1-31" tabindex="-1"></a>    </span>
+<span id="cb1-32"><a href="rename-raw-images---r-option.html#cb1-32" tabindex="-1"></a>    watershed_id <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">str_sub</span>(folder_nm, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb1-33"><a href="rename-raw-images---r-option.html#cb1-33" tabindex="-1"></a>    </span>
+<span id="cb1-34"><a href="rename-raw-images---r-option.html#cb1-34" tabindex="-1"></a>    <span class="fu">print</span>(new_img_folder)</span>
+<span id="cb1-35"><a href="rename-raw-images---r-option.html#cb1-35" tabindex="-1"></a>    </span>
+<span id="cb1-36"><a href="rename-raw-images---r-option.html#cb1-36" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">rename_cameraimage</span>(<span class="at">folder_dir =</span> folder_id, <span class="at">new_dir =</span> new_img_folder, <span class="at">googledrive_dir =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-37"><a href="rename-raw-images---r-option.html#cb1-37" tabindex="-1"></a>  <span class="co"># add column with the original folder name image came from</span></span>
+<span id="cb1-38"><a href="rename-raw-images---r-option.html#cb1-38" tabindex="-1"></a>  output<span class="sc">$</span>folder_nm <span class="ot">&lt;-</span> folder_nm</span>
+<span id="cb1-39"><a href="rename-raw-images---r-option.html#cb1-39" tabindex="-1"></a>  <span class="co">#save on iteration, in case folder fails</span></span>
+<span id="cb1-40"><a href="rename-raw-images---r-option.html#cb1-40" tabindex="-1"></a>  <span class="fu">write.csv</span>(output, <span class="fu">paste0</span>(<span class="st">&quot;rename_&quot;</span>, folder_nm, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb1-41"><a href="rename-raw-images---r-option.html#cb1-41" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb1-42"><a href="rename-raw-images---r-option.html#cb1-42" tabindex="-1"></a>  }</span>
+<span id="cb1-43"><a href="rename-raw-images---r-option.html#cb1-43" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="renaming-files-using-local-folder-directory" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Renaming files using local folder directory<a href="rename-raw-images---r-option.html#renaming-files-using-local-folder-directory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The workflow is set up to rename <em>and move</em> the images, please double check directory locations are correct. It is recommended that you test with single file before applying to group of files and/or folders. This software is not guaranteed.</p>
+<p>The script for renaming files is designed with Hubbard Brook images in mind. The format for an image’s new name is Hbwtr_<em>watershed number</em>_<em>date</em>_<em>time</em>.JPG.</p>
+<p>The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.Therefore, all folders that contain images <em>must start with the watershed id</em>, for example “W2_”, the remaining folder names are not utilized.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rename-raw-images---r-option.html#cb2-1" tabindex="-1"></a>image_path <span class="ot">=</span> <span class="st">&quot;G:</span><span class="sc">\\</span><span class="st">Shared drives</span><span class="sc">\\</span><span class="st">Hubbard Brook Rosi (HB WatER)</span><span class="sc">\\</span><span class="st">2_Camera Trap photos</span><span class="sc">\\</span><span class="st">Stream Photos</span><span class="sc">\\</span><span class="st">Newly_uploaded_data&quot;</span></span>
+<span id="cb2-2"><a href="rename-raw-images---r-option.html#cb2-2" tabindex="-1"></a>folders <span class="ot">=</span> <span class="fu">list.dirs</span>(image_path, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="rename-raw-images---r-option.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="rename-raw-images---r-option.html#cb2-4" tabindex="-1"></a>all_folder_Dir <span class="ot">=</span> folders[stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="fu">basename</span>(<span class="fu">normalizePath</span>(folders)), <span class="st">&quot;W&quot;</span>)] <span class="co">#only folders that start with W</span></span>
+<span id="cb2-5"><a href="rename-raw-images---r-option.html#cb2-5" tabindex="-1"></a>new_img_dir  <span class="ot">=</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">_HubbardBrook_</span><span class="sc">\\</span><span class="st">CameraImages&quot;</span></span>
+<span id="cb2-6"><a href="rename-raw-images---r-option.html#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="rename-raw-images---r-option.html#cb2-7" tabindex="-1"></a>mv_projectdir <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_folder_Dir, <span class="cf">function</span>(folder_dir){</span>
+<span id="cb2-8"><a href="rename-raw-images---r-option.html#cb2-8" tabindex="-1"></a>    watershed_id <span class="ot">=</span> <span class="fu">tolower</span>(<span class="fu">str_sub</span>(<span class="fu">basename</span>(<span class="fu">normalizePath</span>(folder_dir)), <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb2-9"><a href="rename-raw-images---r-option.html#cb2-9" tabindex="-1"></a>  <span class="fu">print</span>(watershed_id)     </span>
+<span id="cb2-10"><a href="rename-raw-images---r-option.html#cb2-10" tabindex="-1"></a>    output <span class="ot">&lt;-</span> <span class="fu">rename_cameraimage</span>(<span class="at">folder_dir =</span> folder_dir, <span class="at">new_dir =</span> new_img_dir, <span class="at">googledrive_dir =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-11"><a href="rename-raw-images---r-option.html#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="rename-raw-images---r-option.html#cb2-12" tabindex="-1"></a>  <span class="co">#save on iteration, in case folder fails</span></span>
+<span id="cb2-13"><a href="rename-raw-images---r-option.html#cb2-13" tabindex="-1"></a>  <span class="fu">write.csv</span>(output, <span class="fu">paste0</span>(<span class="st">&quot;rename_&quot;</span>, folder_nm, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb2-14"><a href="rename-raw-images---r-option.html#cb2-14" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb2-15"><a href="rename-raw-images---r-option.html#cb2-15" tabindex="-1"></a>})</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rename-raw-images--python-option.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/edit/master/01-A-renamefiles-Roption.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/henrysun9074/hbwater_cameratrap_pheno/blob/master/01-A-renamefiles-Roption.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
