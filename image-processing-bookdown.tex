@@ -1,0 +1,1245 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={A Guide to an Image Processing Pipeline for Classification with Machine Learning},
+  pdfauthor={Henry Sun, Biniam Garomsa, Hector Ontiveros},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{A Guide to an Image Processing Pipeline for Classification with Machine Learning}
+\author{Henry Sun, Biniam Garomsa, Hector Ontiveros}
+\date{2024-04-12}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{verbatim}
+## Warning: package 'bookdown' was built under R version 4.3.3
+\end{verbatim}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\hypertarget{about-this-book}{%
+\subsection{About This Book}\label{about-this-book}}
+
+This book was authored to serve as a basic guide for using our data pipeline to
+process raw images using ROI software, VIA image annotation, and a random forest machine
+learning model.
+
+Special thanks goes to Audrey Thellman and Weston Slaughter for their guidance and
+mentorship.
+
+\hypertarget{introduction-1}{%
+\subsection{Introduction}\label{introduction-1}}
+
+The primary target users of this software are river ecologists looking to extract data from camera traps. Freshwater systems are losing ice rapidly due to rising global temperatures. Currently, studies on river ice ecology are patchy, and more so regarding small-scale rivers.
+
+Our team's images are from the Hubbard Brook Experimental Forest in New Hampshire. Nine camera traps in as many watersheds have taken images daily for three years (see below for an example image) from which the Hubbard Brook Ecosystem Study and the U.S. Geological Survey can extract data using our product.
+
+\includegraphics[width=64.22in]{./imgs/Hbwtr_w1_20200329_120457}
+
+\hypertarget{how-to-use-this-book}{%
+\subsection{How to Use This Book}\label{how-to-use-this-book}}
+
+The data pipeline referenced in this book was originally designed for use by scientists studying field camera images at Hubbard Brook Experimental Forest. However, our software can be viably used for classification with other types of field images.
+
+Each chapter will provide a broad overview with instructions on applying our data pipeline for generalized applications. Instructions for Hubbard Brook users (with images stored)
+in Google Drive will be kept separate from instructions for users with other types of images,
+as modifications to the scripts will likely be required when processing different images.
+
+More information about our pipeline and its functionality can be found in the documentation
+for each script, or on our GitHub repo \href{https://github.com/audreythellman/hbwater_cameratrap_pheno}{here}.
+
+\hypertarget{data-pipeline-overview}{%
+\subsection{Data Pipeline Overview}\label{data-pipeline-overview}}
+
+The data pipeline starts with raw images and finishes with a trained machine learning model
+which can classify pixels into groups of attributes. Each chapter of this book will
+cover one step in this pipeline.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Renaming image files
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  In this step, raw images have their file names converted to contain useful information
+  including time-series data
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Region of interest
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  To avoid interference from land/soil, select a polygonal region of interest containing
+  the desired region
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  VIA image annotation
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Using VGG image annotation software, classify pixels in masked images to serve as
+  training data for the machine learning model
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Machine learning model
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Run the images through a trained model which will predict ice and snow cover
+\end{itemize}
+
+\hypertarget{rename-raw-images}{%
+\section{Rename Raw Images}\label{rename-raw-images}}
+
+Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.
+
+These steps were designed to process files stored in a shared Google Drive by
+running the script in \emph{Google Colaboratory}. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see \textbf{Section 1.2}.
+
+\hypertarget{google-drive-files}{%
+\subsection{Google Drive Files}\label{google-drive-files}}
+
+\hypertarget{load-packages}{%
+\subsubsection{Load Packages}\label{load-packages}}
+
+Before each session, first run the top 3 lines -- these lines of code install the \emph{Tesseract Optical Character Recognition Engine}, which allows us to later use the \texttt{text\_to\_string} function and read the timestamp from each image. Subsequently, load all required packages/libraries.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{apt install tesseract}\OperatorTok{{-}}\NormalTok{ocr}
+\NormalTok{apt install libtesseract}\OperatorTok{{-}}\NormalTok{dev}
+\NormalTok{pip install pytesseract}
+
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ re}
+\ImportTok{import}\NormalTok{ os}
+\ImportTok{import}\NormalTok{ shutil}
+\ImportTok{from}\NormalTok{ google.colab }\ImportTok{import}\NormalTok{ drive}
+\ImportTok{from}\NormalTok{ glob }\ImportTok{import}\NormalTok{ glob}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mount-google-drive}{%
+\subsubsection{Mount Google Drive}\label{mount-google-drive}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# This will connect to your Google Drive. It will ask you to allow access}
+\NormalTok{drive.mount(}\StringTok{\textquotesingle{}/content/drive\textquotesingle{}}\NormalTok{, force\_remount}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When using Google Colaboratory, before performing any file operations, you must \emph{mount} your personal Google Drive. Find the code chunk with the above code in Colab and run it to allow access.
+
+Afterwards, make sure all file paths used in any functions are for your Google Drive specifically. To find a pathname, click the orange file icon on Google Colab's sidebar, and then click content to navigate your Google Drive. Right-click and select copy path to copy the pathname (see below).
+
+\includegraphics[width=8.94in]{./imgs/contentdrive}
+
+\hypertarget{copying-files}{%
+\subsubsection{Copying Files}\label{copying-files}}
+
+This preliminary step is used when a backup or copy of the original data is needed. It will copy all files in the source directory not present in the target directory.
+
+This method uses shutil's \texttt{copytree} function, which blanket copies all files within a specified directory. To handle issues caused by direct copying of files versus copying of subdirectories, these are copied separate from each other within the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ missing\_files }\OperatorTok{==}\NormalTok{ source\_file\_list: }\CommentTok{\# Will copy entire source folder into destination when no subfolders/files are shared between the two}
+\NormalTok{  shutil.copytree(source, destination }\OperatorTok{+} \StringTok{\textquotesingle{}/\textquotesingle{}} \OperatorTok{+}\NormalTok{ directory\_name, ignore }\OperatorTok{=}\NormalTok{ shutil.ignore\_patterns(}\StringTok{\textquotesingle{}*.gdoc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}*.gsheet\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}*.gslides\textquotesingle{}}\NormalTok{)) }\CommentTok{\#1}
+
+\ControlFlowTok{else}\NormalTok{:}
+    \ControlFlowTok{for}\NormalTok{ folder }\KeywordTok{in}\NormalTok{ missing\_files: }\CommentTok{\# Will copy all missing files/subfolders not present in the destination}
+\NormalTok{      new\_dst }\OperatorTok{=}\NormalTok{ destination }\OperatorTok{+} \StringTok{\textquotesingle{}/\textquotesingle{}} \OperatorTok{+}\NormalTok{ folder}
+      \ControlFlowTok{if}\NormalTok{ os.path.isfile(folder) }\OperatorTok{==} \VariableTok{False}\NormalTok{: }\CommentTok{\# Copies all subfolders/subdirectories}
+\NormalTok{        shutil.copytree(source }\OperatorTok{+} \StringTok{\textquotesingle{}/\textquotesingle{}} \OperatorTok{+}\NormalTok{ folder, new\_dst, ignore }\OperatorTok{=}\NormalTok{ shutil.ignore\_patterns(}\StringTok{\textquotesingle{}*.gdoc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}*.gsheet\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}*.gslides\textquotesingle{}}\NormalTok{)) }\CommentTok{\#1}
+\NormalTok{        missing\_files.remove(folder)}
+      \ControlFlowTok{else}\NormalTok{: }\CommentTok{\# Copies files not contained within a subdirectory}
+\NormalTok{        shutil.copy(source }\OperatorTok{+} \StringTok{\textquotesingle{}/\textquotesingle{}} \OperatorTok{+}\NormalTok{ folder, destination)}
+\NormalTok{        missing\_files.remove(folder) }
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"These folders/files were not copied (ignore if list is empty): "}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(missing\_files)}
+\end{Highlighting}
+\end{Shaded}
+
+Copying \textbf{any} Google files, be it Google Docs, Slides, Sheets, Drawings, etc. must be done manually as these files are special and not able to be copied using shutil\footnote{For more information, see the comments within the script and text blocks in the Jupyter Notebook.}. For any additional file extensions to avoid copying, specify them as arguments for \texttt{shutil.ignore\_patterns}.
+
+\hypertarget{main-method}{%
+\paragraph{Main Method}\label{main-method}}
+
+Finally, to copy the files, simply call \texttt{copy\_files} within the main method. This method takes 3 arguments -- the file path for the source folder, the file path for the destination folder, and a folder name for the folder created if the source and destination directories share no files.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{args }\OperatorTok{=}\NormalTok{ (}\StringTok{"/content/drive/MyDrive/Duke 2022{-}2023/Data+/2\_Camera Trap photos/Stream Photos/On\_Deck"}\NormalTok{, }\StringTok{"/content/drive/MyDrive/Duke 2022{-}2023/Data+/2\_Camera Trap photos/COPY of data for script/On\_Deck"}\NormalTok{, }\StringTok{"Newly\_uploaded\_data"}\NormalTok{)}
+\NormalTok{copy\_files(}\OperatorTok{*}\NormalTok{args)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{renaming-files}{%
+\subsubsection{Renaming Files}\label{renaming-files}}
+
+The renaming files script takes advantage of the \textbf{Tesseract OCR Engine} to read
+the time stamp on the image. This string is then parsed to generate time series information. There are many complementary methods in this script; for more information, see documentation within the script itself.
+
+Be sure to allocate time for the script to run, especially on folders containing
+large amounts of image files\footnote{If you are looking to reduce the script's runtime, one method is to remove the loop within \texttt{extract\_timeStamp} which searches multiple times for the correct timestamp if it is not found initially. However, this will increase the number of files which failed to be renamed correctly.}
+
+The pixel parameters within \texttt{extract\_timeStamp} are designed for the images taken by the Bushnell field cameras used in our study. They may need to be edited manually for other classes of images. Pixel coordinates are identified with a pair of integers {[}x,y{]} where x is the column number and y is the row number. On a pixel grid, the origin is at the top left of the image. Pixel row values go from top to bottom, whereas pixel column values go from left to right.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ extract\_timeStamp(pic\_address):}
+    \CommentTok{\textquotesingle{}\textquotesingle{}\textquotesingle{}}
+\CommentTok{    Extract time Stamp from picture file.}
+
+\CommentTok{    From the bottom right of each picture file, the time stamp is read as image using cv2. It is then converted to a string.}
+\CommentTok{    text which is then checked for format and subsequently returned through match\_date\_format.}
+
+\CommentTok{    Parameters}
+\CommentTok{    {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{    pic\_address : full source address of current picture file.}
+\CommentTok{    Returns}
+\CommentTok{    {-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{    match\_date\_format.group(0) : unaltered timeStamp from bottom of the photo as a string.}
+\CommentTok{    \textquotesingle{}\textquotesingle{}\textquotesingle{}}
+    \CommentTok{\# print(pic\_address)}
+
+\NormalTok{    img }\OperatorTok{=}\NormalTok{ cv2.imread(pic\_address) }\CommentTok{\#read as an image}
+
+    \CommentTok{\# check if the timestamp is the correct format}
+\NormalTok{    date\_pattern }\OperatorTok{=} \StringTok{"\textbackslash{}d\textbackslash{}d{-}\textbackslash{}d\textbackslash{}d{-}\textbackslash{}d\textbackslash{}d\textbackslash{}d\textbackslash{}d \textbackslash{}d\textbackslash{}d:\textbackslash{}d\textbackslash{}d:\textbackslash{}d\textbackslash{}d"} \CommentTok{\# eg 12{-}12{-}2020 11:59:32}
+
+\NormalTok{    loop }\OperatorTok{=} \DecValTok{1}
+\NormalTok{    size\_extension}\OperatorTok{=}\DecValTok{0}
+\NormalTok{    x,y,z }\OperatorTok{=}\NormalTok{ np.shape(img)}
+\NormalTok{    x }\OperatorTok{=}\NormalTok{ (x}\OperatorTok{//}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\DecValTok{1000}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ (y}\OperatorTok{//}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\DecValTok{1000}
+    \CommentTok{\# print(x,y,z)}
+    \ControlFlowTok{while}\NormalTok{ loop}\OperatorTok{\textgreater{}}\DecValTok{0}\NormalTok{:}
+\NormalTok{      ts }\OperatorTok{=}\NormalTok{ img[}\DecValTok{2352} \OperatorTok{{-}}\NormalTok{ size\_extension:, }\DecValTok{2000}\OperatorTok{{-}}\NormalTok{size\_extension:, :] }\CommentTok{\#(change if sizing conventions change!)}
+\NormalTok{      text }\OperatorTok{=}\NormalTok{ pytesseract.image\_to\_string(ts)}
+\NormalTok{      match\_date\_format }\OperatorTok{=}\NormalTok{ re.search(date\_pattern,text)}
+      \ControlFlowTok{if}\NormalTok{ match\_date\_format:}
+        \CommentTok{\# found timestamp, return}
+        \ControlFlowTok{break}
+\NormalTok{      ts\_2 }\OperatorTok{=}\NormalTok{ img[x }\OperatorTok{{-}}\NormalTok{ size\_extension:, x}\OperatorTok{{-}}\NormalTok{size\_extension:, :] }\CommentTok{\#(change if sizing conventions change!)}
+\NormalTok{      text\_2}\OperatorTok{=}\NormalTok{ pytesseract.image\_to\_string(ts\_2)}
+\NormalTok{      match\_date\_format }\OperatorTok{=}\NormalTok{ re.search(date\_pattern,text\_2)}
+      \ControlFlowTok{if}\NormalTok{ match\_date\_format:}
+        \CommentTok{\# found timestamp, return}
+        \ControlFlowTok{break}
+\NormalTok{      size\_extension}\OperatorTok{+=}\DecValTok{100}
+\NormalTok{      loop}\OperatorTok{{-}=}\DecValTok{1}
+
+    \ControlFlowTok{if}\NormalTok{ loop }\OperatorTok{==}\DecValTok{0}\NormalTok{:      }
+      \CommentTok{\# reached end of loop without finding correct timestamp}
+      \BuiltInTok{print}\NormalTok{(}\StringTok{"Correct timestamp not found"}\NormalTok{)}
+
+    \ControlFlowTok{else}\NormalTok{:}
+      \ControlFlowTok{return}\NormalTok{ match\_date\_format.group(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+As with before, make sure Google Drive is mounted, and all relevant packages/libraries are imported. Then, update the file paths\footnote{It may be a good idea to remove or make a note of any non-image files within the folder, as these will throw errors.} and run the main method (below).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ glob }\ImportTok{import}\NormalTok{ glob}
+
+\CommentTok{\#collect all folder paths from newly uploaded data on folder}
+\NormalTok{folder\_list }\OperatorTok{=}\NormalTok{ glob(}\StringTok{"/content/drive/MyDrive/2\_Camera Trap photos/COPY of data for script/Newly\_uploaded\_data/*/"}\NormalTok{, recursive }\OperatorTok{=} \VariableTok{True}\NormalTok{)}
+\CommentTok{\# collect all folder path from on deck folder}
+\NormalTok{folder\_list.extend(glob(}\StringTok{"/content/drive/MyDrive/2\_Camera Trap photos/COPY of data for script/On\_Deck/*/"}\NormalTok{, recursive }\OperatorTok{=} \VariableTok{True}\NormalTok{))}
+\CommentTok{\# extract folder\_name }
+\NormalTok{folder\_list }\OperatorTok{=}\NormalTok{ [f[:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ f }\KeywordTok{in}\NormalTok{ folder\_list]}
+\NormalTok{i }\OperatorTok{=} \DecValTok{0}
+\NormalTok{file\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"/content/drive/MyDrive/2\_Camera Trap photos/COPY of data for script/Testing destination/file\_df.csv"}\NormalTok{)}
+
+\CommentTok{\# for each folder rename and add them to the new destination {-} dst}
+\ControlFlowTok{for}\NormalTok{ folder }\KeywordTok{in}\NormalTok{ folder\_list:}
+  \BuiltInTok{print}\NormalTok{(i,}\StringTok{"/"}\NormalTok{, }\BuiltInTok{len}\NormalTok{(folder\_list))}
+\NormalTok{  i}\OperatorTok{+=}\DecValTok{1}
+  \CommentTok{\# destination to save labeled images}
+\NormalTok{  dst }\OperatorTok{=} \StringTok{"/content/drive/MyDrive/2\_Camera Trap photos/project\_dir/labeled\_image\_files"}
+\NormalTok{  save\_as\_zip }\OperatorTok{=} \VariableTok{False}
+
+  \CommentTok{\#will unzip if necessary}
+\NormalTok{  folder, unzipped }\OperatorTok{=}\NormalTok{ unzip\_src(folder)}
+
+  \CommentTok{\# \#create new destination folder}
+\NormalTok{  fdr\_name, fdr\_dst }\OperatorTok{=}\NormalTok{ new\_folder(folder, dst)}
+
+  \ControlFlowTok{if}\NormalTok{ os.path.exists(fdr\_dst):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"path already exists"}\NormalTok{)}
+  \ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"new path"}\NormalTok{)}
+\NormalTok{    os.mkdir(fdr\_dst)}
+  \BuiltInTok{print}\NormalTok{(folder)}
+  \BuiltInTok{print}\NormalTok{(fdr\_name)}
+  \BuiltInTok{print}\NormalTok{(fdr\_dst)}
+\NormalTok{  rename\_images(folder, fdr\_name, fdr\_dst, file\_df }\OperatorTok{=}\NormalTok{ file\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+The script generates a pandas dataframe which contains the old filename,
+new filename, folder name containing the image, as well as the image \textbf{status} (whether or not it was renamed successfully). This dataframe is then exported to a \texttt{.csv} file in a user-specified destination. See below for an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file\_df }\OperatorTok{=}\NormalTok{ pd.DataFrame(file\_names\_list, columns }\OperatorTok{=}\NormalTok{ [}\StringTok{"old\_name"}\NormalTok{, }\StringTok{"new\_name"}\NormalTok{,}\StringTok{"status"}\NormalTok{, }\StringTok{"note"}\NormalTok{,}\StringTok{"old\_folder"}\NormalTok{])}
+\NormalTok{file\_df.to\_csv(dst}\OperatorTok{+}\StringTok{"/"}\OperatorTok{+}\StringTok{"file\_df.csv"}\NormalTok{)}
+\NormalTok{file\_df.head()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=21.28in]{./imgs/dataframe}
+
+\hypertarget{manual-renames}{%
+\paragraph{Manual Renames}\label{manual-renames}}
+
+While this script works for the vast majority of images, occasionally some images
+will fail to rename correctly. For any files where the timestamp generated a file name which does not match a valid date, run the below chunk of code to identify them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load in created csv, returns file name and path if extracted timestamp is not in range}
+
+\NormalTok{file\_df }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"/content/drive/MyDrive/2\_Camera Trap photos/project\_dir/labeled\_image\_files/file\_df.csv"}\NormalTok{)}
+\NormalTok{file\_df }\OperatorTok{=}\NormalTok{ file\_df[file\_df[}\StringTok{"new\_name"}\NormalTok{].notnull()]}
+\ControlFlowTok{for}\NormalTok{ index, row }\KeywordTok{in}\NormalTok{ file\_df.iterrows():}
+  \CommentTok{\#Check month range}
+  \ControlFlowTok{if} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{13}\NormalTok{:}\DecValTok{15}\NormalTok{]) }\OperatorTok{\textgreater{}} \DecValTok{12} \KeywordTok{or} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{13}\NormalTok{:}\DecValTok{15}\NormalTok{]) }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{]}\OperatorTok{+}\StringTok{" Month not in range, check name in folder :"}\OperatorTok{+}\NormalTok{row[}\StringTok{"old\_folder"}\NormalTok{])}
+  \CommentTok{\#Check year range}
+  \ControlFlowTok{if} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{9}\NormalTok{:}\DecValTok{13}\NormalTok{]) }\OperatorTok{\textgreater{}} \DecValTok{2022} \KeywordTok{or} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{9}\NormalTok{:}\DecValTok{13}\NormalTok{]) }\OperatorTok{\textless{}} \DecValTok{2018}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{]}\OperatorTok{+}\StringTok{" Year not in range, check name in folder :"}\OperatorTok{+}\NormalTok{row[}\StringTok{"old\_folder"}\NormalTok{])}
+  \CommentTok{\#Check day range}
+  \ControlFlowTok{if} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{15}\NormalTok{:}\DecValTok{17}\NormalTok{]) }\OperatorTok{\textgreater{}} \DecValTok{31} \KeywordTok{or} \BuiltInTok{int}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{][}\DecValTok{15}\NormalTok{:}\DecValTok{17}\NormalTok{]) }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(row[}\StringTok{"new\_name"}\NormalTok{]}\OperatorTok{+}\StringTok{" Day not in range, check name in folder :"}\OperatorTok{+}\NormalTok{row[}\StringTok{"old\_folder"}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Another common occurrence is when the timestamp failed to generate altogether due
+to \texttt{pytesseract.image\_to\_string} failing. This is sometimes unavoidable and requires manual renaming of the file. However, this should not be a frequent occurrence due to the built-in loop in \texttt{extract\_timeStamp}.
+
+\hypertarget{local-files}{%
+\subsection{Local Files}\label{local-files}}
+
+This section covers how to run the \texttt{copy\_files} method and \texttt{rename\_script} script
+on files contained in a local directory. This is \textbf{especially} relevant for users
+aiming to rename images that are not from Hubbard Brook experimental forest, and/or
+do not meet the specifications of our script (i.e the timestamp is located at a
+different position on the image).
+
+\hypertarget{load-packages-1}{%
+\subsubsection{Load Packages}\label{load-packages-1}}
+
+When using files on your local computer, first install \texttt{pytesseract} - documentation
+and more information on how to do this is available \href{https://pypi.org/project/pytesseract/}{here}. Then, load all packages as needed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pytesseract}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ re}
+\ImportTok{import}\NormalTok{ os}
+\ImportTok{import}\NormalTok{ shutil}
+\ImportTok{from}\NormalTok{ glob }\ImportTok{import}\NormalTok{ glob}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{copying-files-1}{%
+\subsubsection{Copying Files}\label{copying-files-1}}
+
+The \texttt{shutil} and \texttt{os} libraries can be used in the same manner on a local machine
+as in Google Drive. Therefore, no modifications are required to run the \texttt{copy\_files} method on local files on your computer. Refer to the instructions above in section \textbf{1.1.3}. Ensure the path arguments in the main method map to directories stored in your local machine.
+
+\hypertarget{renaming-files-1}{%
+\subsubsection{Renaming Files}\label{renaming-files-1}}
+
+The script for renaming files is designed with Hubbard Brook images in mind. The format for an image's new name is Hbwtr\_\emph{watershed number}\_\emph{date}\_\emph{time}.JPG.
+The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.
+
+If you would like to follow a different naming convention, the below method must be
+changed (\texttt{generate\_picName}) to reflect that. For example, changing \texttt{new\_name} to \texttt{"Watershed"ws\_num\ +\textquotesingle{}\_\textquotesingle{}\ +\ date\ +\ .\textquotesingle{}jpg\textquotesingle{}"} would output \emph{Watershed9\_12042020.jpg} for an image taken on December 4th, 2020 at Watershed no. 9.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ generate\_picName(fdr\_name, tStamp):}
+\NormalTok{  ws\_num }\OperatorTok{=}\NormalTok{ fdr\_name[}\DecValTok{1}\NormalTok{] }\CommentTok{\#!!!this should be changed if src\_elements[{-}2][1] will not be watershed number!!}
+
+\NormalTok{  stamp\_elements }\OperatorTok{=}\NormalTok{ re.split(}\StringTok{\textquotesingle{}[}\CharTok{\textbackslash{}n}\StringTok{: {-}]\textquotesingle{}}\NormalTok{, tStamp)}
+\NormalTok{  date }\OperatorTok{=}\NormalTok{ stamp\_elements[}\DecValTok{2}\NormalTok{] }\OperatorTok{+}\NormalTok{ stamp\_elements[}\DecValTok{0}\NormalTok{] }\OperatorTok{+}\NormalTok{ stamp\_elements[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  time }\OperatorTok{=}\NormalTok{ stamp\_elements[}\DecValTok{3}\NormalTok{] }\OperatorTok{+}\NormalTok{ stamp\_elements[}\DecValTok{4}\NormalTok{] }\OperatorTok{+}\NormalTok{ stamp\_elements[}\DecValTok{5}\NormalTok{]}
+
+\NormalTok{  new\_name }\OperatorTok{=} \StringTok{"Hbwtr\_w"} \OperatorTok{+}\NormalTok{ ws\_num }\OperatorTok{+} \StringTok{\textquotesingle{}\_\textquotesingle{}} \OperatorTok{+}\NormalTok{ date }\OperatorTok{+} \StringTok{\textquotesingle{}\_\textquotesingle{}} \OperatorTok{+}\NormalTok{ time }\OperatorTok{+} \StringTok{\textquotesingle{}.JPG\textquotesingle{}}
+  \ControlFlowTok{return}\NormalTok{ new\_name}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{changing-timestamp}{%
+\paragraph{Changing Timestamp}\label{changing-timestamp}}
+
+The most complicated and error-prone step in the renaming process is extracting a timestamp. The way it is done in the current code is by starting with the pixel location of the timestamp, attempting to read the timestamp with \texttt{image\_to\_string}, and zooming out if the timestamp
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    loop }\OperatorTok{=} \DecValTok{1}
+\NormalTok{    size\_extension}\OperatorTok{=}\DecValTok{0}
+\NormalTok{    x,y,z }\OperatorTok{=}\NormalTok{ np.shape(img)}
+\NormalTok{    x }\OperatorTok{=}\NormalTok{ (x}\OperatorTok{//}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\DecValTok{1000}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ (y}\OperatorTok{//}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\DecValTok{1000}
+    \CommentTok{\# print(x,y,z)}
+    \ControlFlowTok{while}\NormalTok{ loop}\OperatorTok{\textgreater{}}\DecValTok{0}\NormalTok{:}
+\NormalTok{      ts }\OperatorTok{=}\NormalTok{ img[}\DecValTok{2352} \OperatorTok{{-}}\NormalTok{ size\_extension:, }\DecValTok{2000}\OperatorTok{{-}}\NormalTok{size\_extension:, :] }\CommentTok{\#(change if sizing conventions change!)}
+\NormalTok{      text }\OperatorTok{=}\NormalTok{ pytesseract.image\_to\_string(ts)}
+\NormalTok{      match\_date\_format }\OperatorTok{=}\NormalTok{ re.search(date\_pattern,text)}
+      \ControlFlowTok{if}\NormalTok{ match\_date\_format:}
+        \CommentTok{\# found timestamp, return}
+        \ControlFlowTok{break}
+\NormalTok{      ts\_2 }\OperatorTok{=}\NormalTok{ img[x }\OperatorTok{{-}}\NormalTok{ size\_extension:, x}\OperatorTok{{-}}\NormalTok{size\_extension:, :] }\CommentTok{\#(change if sizing conventions change!)}
+\NormalTok{      text\_2}\OperatorTok{=}\NormalTok{ pytesseract.image\_to\_string(ts\_2)}
+\NormalTok{      match\_date\_format }\OperatorTok{=}\NormalTok{ re.search(date\_pattern,text\_2)}
+      \ControlFlowTok{if}\NormalTok{ match\_date\_format:}
+        \CommentTok{\# found timestamp, return}
+        \ControlFlowTok{break}
+\NormalTok{      size\_extension}\OperatorTok{+=}\DecValTok{100}
+\NormalTok{      loop}\OperatorTok{{-}=}\DecValTok{1}
+
+    \ControlFlowTok{if}\NormalTok{ loop }\OperatorTok{==}\DecValTok{0}\NormalTok{:      }
+      \CommentTok{\# reached end of loop without finding correct timestamp}
+      \BuiltInTok{print}\NormalTok{(}\StringTok{"Correct timestamp not found"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Our script is only able to extract the timestamp if it is present within the image.
+If the image you use does not contain any time-series data, we recommend removing the \texttt{extract\_timeStamp} method and changing the file naming format to reflect that.
+
+After these changes are made, the script should again function identically to
+the one housed in Google Colab. Update the file path and run the main method to
+rename your files.
+
+The script will occasionally throw some unavoidable errors, such as the \texttt{image\_to\_string} method failing to extract a timestamp. To deal
+with these fringe cases, see \textbf{section 1.1.4.1} (Manual Renames) above.
+
+\hypertarget{selecting-region-of-interest}{%
+\section{Selecting Region of Interest}\label{selecting-region-of-interest}}
+
+This chapter provides an overview about the Python scripts used to create a polygonal region of interest and mask for images contained in folders.
+
+A region of interest is often needed to eliminate irrelevant regions or sections of the image. In our case, we wanted to focus solely on stream water/ice rather than surrounding rocks or shrubbery (these could interfere with the machine learning step later).
+
+Before beginning this section, ensure that all image files are properly named.
+
+\texttt{interactive\_ROI\_app.py} is the script used to create a region of interest and mask for images within a folder. Below is a visual aid concept map that outlines the steps within this process.
+
+\includegraphics[width=26.56in]{./imgs/ROI concept map}
+
+\hypertarget{using-the-script}{%
+\subsection{Using the Script}\label{using-the-script}}
+
+This section will explain the necessary elements and steps for you to follow while
+using this script. For more information about how the script works, see \textbf{Section 3.2}; for more information about the functions within the script, see \textbf{Section 3.3}.
+
+\hypertarget{import-packages}{%
+\subsubsection{Import Packages}\label{import-packages}}
+
+Before running the script, load in all necessary packages. While testing our script, we have found that the ``\texttt{Qt5Agg}'' backend works best for Windows system while the ``\texttt{MacOSX}'' backend works best for Apple. These backends allow us to work interactively with the python plotting library \texttt{matplotlib}. For more information, visit \texttt{matplotlib}'s official website.\footnote{Information on matplotlib backends can be found at \url{https://matplotlib.org/stable/users/explain/backends.html}}
+
+During testing of the script, we found \emph{PyCharm} to be the best IDE for running the script, because \emph{vscode} didn't support interactivity through \texttt{matplotlib}. Thus, we recommend using \emph{PyCharm} to run this program.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ re}
+\ImportTok{import}\NormalTok{ matplotlib }\ImportTok{as}\NormalTok{ mpl}
+\ImportTok{import}\NormalTok{ os.path}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+
+\NormalTok{mpl.use(}\StringTok{\textquotesingle{}Qt5Agg\textquotesingle{}}\NormalTok{)  }\CommentTok{\# backend}
+\ImportTok{import}\NormalTok{ cv2}
+\ImportTok{from}\NormalTok{ roipoly }\ImportTok{import}\NormalTok{ RoiPoly}
+\ImportTok{import}\NormalTok{ glob2}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{from}\NormalTok{ matplotlib.widgets }\ImportTok{import}\NormalTok{ Button}
+\ImportTok{from}\NormalTok{ collections }\ImportTok{import}\NormalTok{ OrderedDict}
+\ImportTok{from}\NormalTok{ matplotlib.path }\ImportTok{import}\NormalTok{ Path }\ImportTok{as}\NormalTok{ MplPath}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{set-folder-path}{%
+\subsubsection{Set Folder Path}\label{set-folder-path}}
+
+Our script denotes the file path to a folder and stores it in a variable \texttt{folder\_path}. Change the example path to the path of the folder for which to operate on. We then use the \texttt{.glob} function of the \texttt{glob} package to store the file path for each image into the variable \texttt{image\_folder}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{folder\_path }\OperatorTok{=} \VerbatimStringTok{r"\textbackslash{}Example\textbackslash{}Path\textbackslash{}To\textbackslash{}Folder"}
+\NormalTok{image\_folder }\OperatorTok{=}\NormalTok{ glob2.glob(folder\_path }\OperatorTok{+} \StringTok{"/*"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{drawing-rois}{%
+\subsubsection{Drawing ROIs}\label{drawing-rois}}
+
+After setting the folder path, \textbf{run} the script to open a popup window -- this is the \texttt{matplotlib} interactive interface. It should display the first image in \texttt{image\_folder} and give you the option to select an ROI.
+
+\includegraphics[width=26.67in]{./imgs/mid_creation_first_roi}
+
+In the \texttt{matplotlib} interactive interface, a point is drawn by left-clicking. By left-clicking again, a new point is created and the line becomes static. A new line is again shown from the last point to the user cursor.
+
+To complete a figure, the user right- or double-clicks, bounding the last selected point to the first. The polygon created within the image is the region of interest (ROI).
+
+Once you have finished drawing your ROI, click the \texttt{Confirm} button to apply the ROI and mask to all remaining images in the folder.
+
+\includegraphics[width=40in]{./imgs/confirmbutton}
+
+After the mask has been applied, you can view the mask overlaid on all the remaining images (or prior images) by clicking the \texttt{Previous} or \texttt{Next} buttons.
+
+\includegraphics[width=40in]{./imgs/previousnext}
+
+In some cases, the original ROI may no longer fit the new image - this is often the case if, for instance, snow melts and the water levels of the river rise. In such cases, redrawing the ROI may be necessary. To do this, click the \texttt{Restart\ masking} button, which should again bring up the interactive interface and allow you to redraw and confirm an ROI.
+
+\includegraphics[width=40in]{./imgs/restartmasking}
+
+Once you are satisfied with your new ROI, click the \texttt{Confirm} button to apply the new mask to the remainder of the images in the folder, and keep scrolling with the \texttt{Previous} and \texttt{Next} buttons. Then, click \texttt{Finish\ masking} when you are done.
+
+\includegraphics[width=40in]{./imgs/finishmasking}
+
+This will close the ROI window and generate data frames containing information about the masked images, as well as a folder containing the masked images.
+
+\hypertarget{output}{%
+\subsubsection{Output}\label{output}}
+
+After you are done drawing ROIs, the script will generate three seperate outputs automatically. See the photos below for examples.
+
+The first is a wateryear folder containing masked images.
+
+\includegraphics[width=26.67in]{./imgs/wateryear_example_folder}
+
+The second is a dataframe that stores each \texttt{mask\_id} to its associated mask.
+
+\includegraphics[width=20.68in]{./imgs/maskid_mask}
+
+Finally, the script will generate a dataframe that stores each \texttt{mask\_id} to its associated date.
+
+\includegraphics[width=19.56in]{./imgs/date_mask_csv_example}
+
+\hypertarget{roipoly-functionalities}{%
+\subsection{RoiPoly Functionalities}\label{roipoly-functionalities}}
+
+\texttt{RoiPoly}\footnote{Our version of RoiPoly is derived from jdoepfert's roipoly.py, whose module can be found on at \url{https://github.com/jdoepfert/roipoly.py}} is the python module from which our mouse click events are handled. The functions within this script allow the user to create an ROI by drawing a polygon with mouse clicks. The following section will provide a descriptive overview of the script and its functions.
+
+\hypertarget{imagefile-class}{%
+\subsubsection{ImageFile Class}\label{imagefile-class}}
+
+The script contains a class named \texttt{ImageFile}. Objects in this class have information
+from a file along a specific filepath as their attributes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{ ImageFile:}
+    \CommentTok{""" Image File class to save file path, file name, date, mask\_id"""}
+
+    \KeywordTok{def} \FunctionTok{\_\_init\_\_}\NormalTok{(}\VariableTok{self}\NormalTok{, filename):}
+        \VariableTok{self}\NormalTok{.path }\OperatorTok{=}\NormalTok{ filename}
+        \VariableTok{self}\NormalTok{.image\_name }\OperatorTok{=}\NormalTok{ filename.split(}\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{"}\NormalTok{)[}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]}
+        \VariableTok{self}\NormalTok{.date }\OperatorTok{=} \VariableTok{self}\NormalTok{.get\_date()}
+        \VariableTok{self}\NormalTok{.mm, }\VariableTok{self}\NormalTok{.dd, }\VariableTok{self}\NormalTok{.yy }\OperatorTok{=} \VariableTok{self}\NormalTok{.date.split(}\StringTok{"/"}\NormalTok{)}
+        \VariableTok{self}\NormalTok{.mask\_id }\OperatorTok{=} \VariableTok{None}
+\end{Highlighting}
+\end{Shaded}
+
+There is an \texttt{ImageFile} object for each image in the folder \texttt{image\_folder}. Within this class are functions that extract the time stamp and an array of RGB values for each image. Additionally, the water year for each image is derived from its timestamp, as is a sliced-array version of each image for faster plotting. These objects are appended to image\_file\_list, which is then sorted by water years.
+
+A list with complete information of every file in image\_folder is appended to \texttt{image\_file\_list}, which is then sorted and converted to a list of arrays for plotting purposes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{image\_file\_list }\OperatorTok{=}\NormalTok{ []}
+\ControlFlowTok{for}\NormalTok{ filename }\KeywordTok{in}\NormalTok{ image\_folder:}
+\NormalTok{    filetype }\OperatorTok{=}\NormalTok{ filename[}\OperatorTok{{-}}\DecValTok{4}\NormalTok{:]}
+    \CommentTok{\# Check if the file name ends with ".JPG" or ".jpg"}
+    \ControlFlowTok{if}\NormalTok{ filetype.lower() }\OperatorTok{!=} \StringTok{".jpg"}\NormalTok{:}
+        \ControlFlowTok{continue}
+\NormalTok{    curr\_IF }\OperatorTok{=}\NormalTok{ ImageFile(filename)}
+\NormalTok{    image\_file\_list.append(curr\_IF)}
+
+\CommentTok{\# sort by year, then month, then day}
+\NormalTok{image\_file\_list }\OperatorTok{=}\NormalTok{ np.array(}\BuiltInTok{sorted}\NormalTok{(image\_file\_list, key}\OperatorTok{=}\KeywordTok{lambda}\NormalTok{ x: (x.yy, x.mm, x.dd)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{first-roi-and-masking-function}{%
+\subsubsection{First ROI and Masking Function}\label{first-roi-and-masking-function}}
+
+Upon running the script, a popup window will open displaying the first image in \texttt{image\_folder}. The user can then select a polygonal ROI and apply a mask.
+
+Each selected point in a created polygon is stored into \texttt{poly\_verts} (short for polygon vertices), which is used to create the mask outline for the region of interest.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ get\_mask\_poly\_verts(image, poly\_verts, on\_original}\OperatorTok{=}\VariableTok{False}\NormalTok{):}
+    \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(np.shape(image)) }\OperatorTok{==} \DecValTok{3}\NormalTok{:}
+\NormalTok{        ny, nx, nz }\OperatorTok{=}\NormalTok{ np.shape(image)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        ny, nx }\OperatorTok{=}\NormalTok{ np.shape(image)}
+    \CommentTok{\# if mask is applied to original, each coordinate is multiplied by 2}
+    \ControlFlowTok{if}\NormalTok{ on\_original:}
+\NormalTok{        poly\_verts }\OperatorTok{=}\NormalTok{ [(}\DecValTok{2} \OperatorTok{*}\NormalTok{ x, }\DecValTok{2} \OperatorTok{*}\NormalTok{ y) }\ControlFlowTok{for}\NormalTok{ (x, y) }\KeywordTok{in}\NormalTok{ poly\_verts]}
+
+\NormalTok{    x, y }\OperatorTok{=}\NormalTok{ np.meshgrid(np.arange(nx), np.arange(ny))}
+\NormalTok{    x, y }\OperatorTok{=}\NormalTok{ x.flatten(), y.flatten()}
+\NormalTok{    points }\OperatorTok{=}\NormalTok{ np.vstack((x, y)).T}
+\NormalTok{    roi\_path }\OperatorTok{=}\NormalTok{ MplPath(poly\_verts)}
+\NormalTok{    mask }\OperatorTok{=}\NormalTok{ roi\_path.contains\_points(points).reshape((ny, nx))}
+    \ControlFlowTok{return}\NormalTok{ mask}
+\end{Highlighting}
+\end{Shaded}
+
+After creating a region of interest, the user must click the \texttt{Confirm} button to proceed and apply the mask. These buttons are part of \texttt{matplotlib}'s \texttt{Button} module.
+
+Creating one requires an event function, as well as button initialization as seen below for the \texttt{Confirm} button. The \texttt{confirm\_roi} event is triggered when the button is clicked.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{confirm\_ax }\OperatorTok{=}\NormalTok{ plt.axes([}\FloatTok{0.81}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.075}\NormalTok{])}
+\NormalTok{confirm\_button }\OperatorTok{=}\NormalTok{ Button(confirm\_ax, }\StringTok{\textquotesingle{}Confirm\textquotesingle{}}\NormalTok{)}
+\NormalTok{confirm\_button.on\_clicked(confirm\_roi)}
+\NormalTok{confirm\_button.\_button }\OperatorTok{=}\NormalTok{ confirm\_button}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ confirm\_roi(event):}
+    \CommentTok{"""}
+\CommentTok{    Callback event for confirm button}
+\CommentTok{    If users select ROI and hit confirm, save the poly\_verts and apply it to the rest of images}
+\CommentTok{    Then, start showing next and previous buttons}
+\CommentTok{    """}
+
+    \CommentTok{\# save current mask\textquotesingle{}s poly\_verts starting from start\_img\_ind index}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(start\_img\_ind, }\BuiltInTok{len}\NormalTok{(image\_file\_list)):}
+\NormalTok{        poly\_verts\_list[i] }\OperatorTok{=}\NormalTok{ curr\_poly\_verts}
+
+\NormalTok{    img\_display\_axis.set\_title(}\StringTok{"Choose next or redraw ROI for }\SpecialCharTok{\{\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(image\_file\_list[start\_img\_ind].date))}
+    \CommentTok{\# button to show next and prev masked images}
+\NormalTok{    \_ }\OperatorTok{=}\NormalTok{ show\_next\_prev()}
+\end{Highlighting}
+\end{Shaded}
+
+We use Boolean algebra to apply the mask onto the image, rendering everything outside of the ROI black.
+
+After the ROI is confirmed and mask is applied, users can click the \texttt{Previous} and \texttt{Next} buttons to view subsequent/prior images in the folder with the mask applied.
+
+These are part of the callback function \texttt{Callback}, which makes sliding through a folder possible through indexing. By indexing, each image is drawn with its associated date in the figure title.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def} \BuiltInTok{next}\NormalTok{(}\VariableTok{self}\NormalTok{, event):}
+    \CommentTok{"""}
+\CommentTok{    :param event: event callback for matplotlib button}
+\CommentTok{    Slide to the next image in folder and display it}
+\CommentTok{    """}
+    \VariableTok{self}\NormalTok{.index }\OperatorTok{+=} \DecValTok{1}
+    \ControlFlowTok{if} \KeywordTok{not} \VariableTok{self}\NormalTok{.index\_in\_range():}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Reached End of Folder"}\NormalTok{)}
+        \VariableTok{self}\NormalTok{.index }\OperatorTok{{-}=} \DecValTok{1}
+        \ControlFlowTok{return}
+\NormalTok{    im }\OperatorTok{=} \VariableTok{self}\NormalTok{.get\_masked\_img()}
+\NormalTok{    img\_display.set\_data(im)}
+\NormalTok{    img\_display\_axis.set\_title(}\StringTok{"Click next or draw new ROI for Date: }\SpecialCharTok{\{\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(image\_file\_list[}\VariableTok{self}\NormalTok{.index].get\_date()))}
+\NormalTok{    plt.draw()}
+
+\KeywordTok{def}\NormalTok{ prev(}\VariableTok{self}\NormalTok{, event):}
+    \CommentTok{"""}
+\CommentTok{    :param event: event callback for matplotlib button}
+\CommentTok{    Slide to the previous image in folder and display it}
+\CommentTok{    """}
+    \VariableTok{self}\NormalTok{.index }\OperatorTok{{-}=} \DecValTok{1}
+    \ControlFlowTok{if} \KeywordTok{not} \VariableTok{self}\NormalTok{.index\_in\_range():}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"Reached Start of Folder"}\NormalTok{)}
+        \VariableTok{self}\NormalTok{.index }\OperatorTok{+=} \DecValTok{1}
+        \ControlFlowTok{return}
+
+\NormalTok{    im }\OperatorTok{=} \VariableTok{self}\NormalTok{.get\_masked\_img()}
+\NormalTok{    img\_display.set\_data(im)}
+\NormalTok{    img\_display\_axis.set\_title(}\StringTok{"Click next or draw new ROI for Date: }\SpecialCharTok{\{\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(image\_file\_list[}\VariableTok{self}\NormalTok{.index].get\_date()))}
+\NormalTok{    plt.draw()}
+\end{Highlighting}
+\end{Shaded}
+
+To redraw the ROI and apply it to the remaining images, the user must click the \texttt{Restart\ masking} button. The user can then create a new region of interest and click \texttt{Confirm} to proceed to apply the new mask. After creating a new ROI, the user has the option to either confirm or to redraw the ROI again.
+
+The underlying dynamics of the \texttt{restart\_masking} button can be seen here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ restart\_masking(event):}
+    \CommentTok{"""}
+\CommentTok{    :param event: Callback event when user restarts masking}
+\CommentTok{    Clears plot and begin a new ROI masking session}
+\CommentTok{    """}
+    \KeywordTok{global}\NormalTok{ my\_roi, confirm\_button, restart\_masking\_button, img\_display, img\_display\_axis, start\_img\_ind, curr\_mask, curr\_poly\_verts}
+
+    \CommentTok{\# clear plot}
+\NormalTok{    plt.clf()}
+    \CommentTok{\# create new plot}
+\NormalTok{    fg\_2 }\OperatorTok{=}\NormalTok{ plt.gcf()}
+\NormalTok{    fg\_2.subplots\_adjust(left}\OperatorTok{=}\FloatTok{0.3}\NormalTok{, bottom}\OperatorTok{=}\FloatTok{0.25}\NormalTok{)}
+\NormalTok{    fg\_2.set\_size\_inches(w, h, forward}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+    \CommentTok{\# change the content of image on curr axis}
+\NormalTok{    img\_display\_axis }\OperatorTok{=}\NormalTok{ plt.gca()}
+    \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ callback.index\_in\_range():}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{"OUT OF RANGE"}\NormalTok{)}
+        \ControlFlowTok{return}
+\NormalTok{    curr\_ind }\OperatorTok{=}\NormalTok{ callback.index}
+\NormalTok{    curr\_obj }\OperatorTok{=}\NormalTok{ image\_file\_list[curr\_ind]}
+\NormalTok{    img\_display\_axis.set\_title(}\StringTok{"Confirm ROI? Date: }\SpecialCharTok{\{\}}\StringTok{"}\NormalTok{.}\BuiltInTok{format}\NormalTok{(curr\_obj.get\_date()))}
+\NormalTok{    img\_display }\OperatorTok{=}\NormalTok{ img\_display\_axis.imshow(curr\_obj.read\_img\_sliced())}
+    \CommentTok{\# display new ROI pop up}
+\NormalTok{    my\_roi }\OperatorTok{=}\NormalTok{ RoiPoly(color}\OperatorTok{=}\StringTok{\textquotesingle{}r\textquotesingle{}}\NormalTok{, close\_fig}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+    \CommentTok{\# wait until the user finishes selecting ROI}
+    \ControlFlowTok{while} \KeywordTok{not}\NormalTok{ my\_roi.finished\_clicking:}
+\NormalTok{        plt.pause(}\FloatTok{0.01}\NormalTok{)}
+
+    \CommentTok{\# mask current image and display}
+\NormalTok{    cp }\OperatorTok{=}\NormalTok{ curr\_obj.read\_img\_sliced().copy()}
+\NormalTok{    curr\_mask, curr\_poly\_verts }\OperatorTok{=}\NormalTok{ my\_roi.get\_mask(cp)}
+\NormalTok{    cp }\OperatorTok{=}\NormalTok{ apply\_mask(cp, curr\_mask)}
+\NormalTok{    start\_img\_ind }\OperatorTok{=}\NormalTok{ curr\_ind}
+\NormalTok{    img\_display }\OperatorTok{=}\NormalTok{ img\_display\_axis.imshow(cp)}
+
+    \CommentTok{\# Create a confirm mask button for new session}
+\NormalTok{    confirm\_ax }\OperatorTok{=}\NormalTok{ plt.axes([}\FloatTok{0.81}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.075}\NormalTok{])}
+\NormalTok{    confirm\_button }\OperatorTok{=}\NormalTok{ Button(confirm\_ax, }\StringTok{\textquotesingle{}Confirm\textquotesingle{}}\NormalTok{)}
+\NormalTok{    confirm\_button.on\_clicked(confirm\_roi)}
+\NormalTok{    confirm\_button.\_button }\OperatorTok{=}\NormalTok{ confirm\_button}
+
+    \CommentTok{\# Create a restart mask button for new session}
+\NormalTok{    restart\_masking\_ax }\OperatorTok{=}\NormalTok{ plt.axes([}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.075}\NormalTok{])}
+\NormalTok{    restart\_masking\_button }\OperatorTok{=}\NormalTok{ Button(restart\_masking\_ax, }\StringTok{"Restart masking"}\NormalTok{)}
+\NormalTok{    restart\_masking\_button.on\_clicked(restart\_masking)}
+
+\NormalTok{    plt.draw()}
+\end{Highlighting}
+\end{Shaded}
+
+Once masking has been complete, click the \texttt{Finish\ masking} button to close the figure. This button event also generates the output of the script. This event is slow and hefty, expect a long processing time.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ finish\_masking(event):}
+    \CommentTok{"""}
+\CommentTok{        :param event: Callback event for finish masking button}
+\CommentTok{        save dataframe linking mask\_id to actual mask  (mask\_df)}
+\CommentTok{        create water year folders}
+\CommentTok{        save dataframe linking date to mask\_id (date\_mask\_df)}
+\CommentTok{        apply masks on original images and save them in their respective water year folders}
+\CommentTok{        close plot}
+\CommentTok{    """}
+    \KeywordTok{global}\NormalTok{ poly\_verts\_list}
+
+    \CommentTok{\# collect unique poly\_verts and assign mask\_ids to them}
+\NormalTok{    poly\_verts\_unique\_list }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{    mask\_id }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{1}
+    \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(poly\_verts\_list)):}
+        \ControlFlowTok{if}\NormalTok{ mask\_id }\OperatorTok{==} \OperatorTok{{-}}\DecValTok{1} \KeywordTok{or}\NormalTok{ poly\_verts\_list[i }\OperatorTok{{-}} \DecValTok{1}\NormalTok{] }\OperatorTok{!=}\NormalTok{ poly\_verts\_list[i]:}
+\NormalTok{            mask\_id }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            poly\_verts\_unique\_list.append(poly\_verts\_list[i])}
+        \CommentTok{\# assign mask\_ids to all ImageFile objects}
+\NormalTok{        image\_file\_list[i].mask\_id }\OperatorTok{=}\NormalTok{ mask\_id}
+
+    \CommentTok{\# Save a mask\_df data frame with columns mask\_id{-}\textgreater{} actual mask(poly\_verts) and save it}
+\NormalTok{    mask\_df }\OperatorTok{=}\NormalTok{ pd.DataFrame(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{zip}\NormalTok{(poly\_verts\_unique\_list)), columns}\OperatorTok{=}\NormalTok{[}\StringTok{"poly\_verts"}\NormalTok{])}
+\NormalTok{    mask\_df.index.name }\OperatorTok{=} \StringTok{"mask\_id"}
+\NormalTok{    mask\_df\_dst }\OperatorTok{=}\NormalTok{ folder\_path }\OperatorTok{+} \StringTok{"/"} \OperatorTok{+} \StringTok{"mask\_df.csv"}
+\NormalTok{    mask\_df.to\_csv(mask\_df\_dst)}
+    \CommentTok{\# print(mask\_df.head())}
+
+    \CommentTok{\# collect all information from ImageFile Objects}
+\NormalTok{    image\_file\_info }\OperatorTok{=}\NormalTok{ pd.DataFrame(}
+\NormalTok{        [(i.date, i.mask\_id, i.path, i.get\_water\_year(), ind, poly\_verts\_list[ind]) }\ControlFlowTok{for}\NormalTok{ ind, i }\KeywordTok{in}
+         \BuiltInTok{enumerate}\NormalTok{(image\_file\_list)],}
+\NormalTok{        columns}\OperatorTok{=}\NormalTok{[}\StringTok{"Date"}\NormalTok{, }\StringTok{"mask\_id"}\NormalTok{, }\StringTok{"file\_path"}\NormalTok{, }\StringTok{"WY"}\NormalTok{, }\StringTok{"list\_index"}\NormalTok{, }\StringTok{"poly\_verts"}\NormalTok{])}
+\NormalTok{    image\_file\_info.set\_index(}\StringTok{"WY"}\NormalTok{, inplace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+    \CommentTok{\# print(image\_file\_info.head())}
+
+    \CommentTok{\# list of water years}
+\NormalTok{    list\_wy }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(image\_file\_info.index.unique())}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"STARTED SAVING"}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"This takes about 1 second per an image file"}\NormalTok{)}
+
+    \ControlFlowTok{for}\NormalTok{ water\_year }\KeywordTok{in}\NormalTok{ list\_wy:}
+        \CommentTok{\# Create folders for each water year}
+\NormalTok{        wy\_dest }\OperatorTok{=}\NormalTok{ folder\_path }\OperatorTok{+} \StringTok{"/"} \OperatorTok{+} \StringTok{"WY"} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(water\_year)}
+        \ControlFlowTok{if} \KeywordTok{not}\NormalTok{ os.path.exists(wy\_dest):}
+\NormalTok{            os.mkdir(wy\_dest)}
+        \CommentTok{\# loop through index of image\_file\_objects and save original images with their mask}
+\NormalTok{        df }\OperatorTok{=}\NormalTok{ image\_file\_info[image\_file\_info.index }\OperatorTok{==}\NormalTok{ water\_year]}
+
+        \CommentTok{\# save a date\_mask dataframe with columns date{-}\textgreater{} mask\_id {-}\textgreater{} file name}
+\NormalTok{        date\_mask\_df }\OperatorTok{=}\NormalTok{ df.reset\_index()[[}\StringTok{"Date"}\NormalTok{, }\StringTok{"mask\_id"}\NormalTok{]].set\_index(}\StringTok{"Date"}\NormalTok{)}
+\NormalTok{        date\_mask\_df.to\_csv(wy\_dest }\OperatorTok{+} \StringTok{"/"} \OperatorTok{+} \StringTok{"date\_mask.csv"}\NormalTok{)}
+
+        \CommentTok{\# mask images within a selected water\_year}
+        \ControlFlowTok{for}\NormalTok{ index, row }\KeywordTok{in}\NormalTok{ df.iterrows():}
+\NormalTok{            folder\_index }\OperatorTok{=}\NormalTok{ row[}\StringTok{"list\_index"}\NormalTok{]}
+\NormalTok{            curr\_file\_path }\OperatorTok{=}\NormalTok{ row[}\StringTok{"file\_path"}\NormalTok{]}
+
+            \CommentTok{\# save masked image to WY destination}
+\NormalTok{            curr\_obj }\OperatorTok{=}\NormalTok{ image\_file\_list[folder\_index]}
+\NormalTok{            curr\_file\_name }\OperatorTok{=}\NormalTok{ curr\_obj.image\_name}
+\NormalTok{            curr\_original\_image }\OperatorTok{=}\NormalTok{ curr\_obj.read\_img\_orig().copy()}
+\NormalTok{            curr\_original\_mask }\OperatorTok{=}\NormalTok{ get\_mask\_poly\_verts(curr\_original\_image, poly\_verts\_list[folder\_index],}
+\NormalTok{                                                     on\_original}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{            curr\_original\_image }\OperatorTok{=}\NormalTok{ apply\_mask(curr\_original\_image, curr\_original\_mask)}
+\NormalTok{            curr\_img\_save\_dest }\OperatorTok{=}\NormalTok{ wy\_dest }\OperatorTok{+} \StringTok{"/"} \OperatorTok{+}\NormalTok{ curr\_file\_name}
+
+            \CommentTok{\# save curr\_original\_image}
+\NormalTok{            Image.fromarray(np.array(curr\_original\_image)).save(curr\_img\_save\_dest)}
+
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"FINISHED SAVING"}\NormalTok{)}
+\NormalTok{    plt.close()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{documentation}{%
+\subsection{Documentation}\label{documentation}}
+
+For complete documentation and explanations behind the code, see the script itself.
+Below is a list of all functions within the script and a brief description of their purpose.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Function
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+init & Constructor \\
+get\_date & Extracts date pattern (MM/DD/YY) from file name (eg. Hbwtr\_w3\_20200315\_115918.JPG) \\
+get\_water\_year & Extracts water year from dates (a water year runs from October 1st of the year prior to September 30th of the current year) \\
+read\_img\_orig & Reads image path and returns original image (as np.array) \\
+read\_img\_sliced & Reads image path and returns sliced image (np.array) for faster display \\
+next & Slides to next image in image folder and displays it \\
+prev & Slides to the previous image in folder and displays it \\
+index\_in\_range & Checks if the current index is within the range of the image\_file\_list \\
+get\_masked\_img & Apply mask from poly\_verts\_list and return masked image \\
+start\_roi\_selection & Allows user to select and confirm ROI \\
+show\_first\_image & Displays the first image \\
+confirm\_ROI & If ROI is confirmed, save poly\_verts and apply to the remaining images \\
+show\_next\_prev & Creates next, previous, and finish buttons \\
+restart\_masking & Clears plot and begin a new ROI masking session \\
+finish\_masking & Saves dataframe linking mask\_id to actual mask (mask\_df), creates water year folders, saves dataframe linking date to mask\_id (date\_mask\_df), applies masks on original images and saves them in their respective water year folders, then closes plot \\
+apply\_mask & Applies mask to image \\
+get\_mask\_poly\_verts & Returns coordinates for image mask that can be applied to image \\
+\end{longtable}
+
+\hypertarget{classifying-image-attributes-with-via}{%
+\section{Classifying Image Attributes with VIA}\label{classifying-image-attributes-with-via}}
+
+After completing image masking, the next step of image classification is done entirely in VGG Image Annotator (VIA).
+This is an HTML software found online, and the demo can be accessed \href{https://www.robots.ox.ac.uk/~vgg/software/via/via_demo.html}{here}. It should look like this:
+
+\includegraphics[width=40in]{./imgs/VIASoftware}
+
+In our data pipeline, fully classified images become the training data for our machine learning model. Thus, it is important to have well-annotated images before proceeding onto the final step.
+
+\hypertarget{creating-project}{%
+\subsection{Creating Project}\label{creating-project}}
+
+If a project already exists in VIA, navigate to the project tab in the menu bar and click
+load project to load in a preexisting .json file. Otherwise, remove the demo images
+and upload your own images using \textbf{add files}.
+
+At any point during annotation, these files may be saved into a \texttt{.json} project using
+\textbf{Project \textgreater{} Save} from the menu bar.
+
+\hypertarget{creating-attributes}{%
+\subsection{Creating Attributes}\label{creating-attributes}}
+
+The next step is to create `attributes,' which are effectively characteristics for pixels
+in the image. To create attributes for pixel classification, navigate to the bottom left-hand side
+of the screen to name and assign characteristics for the attribute.
+
+More information about declaring attributes as well as answers to other questions you may have about
+using VIA can be found on the user guide, available \href{https://www.robots.ox.ac.uk/~vgg/software/via/docs/user_guide.html}{here}.
+
+\hypertarget{classify-pixels}{%
+\subsection{Classify Pixels}\label{classify-pixels}}
+
+Classify pixels by dragging and clicking on the image to create boxes or shapes
+using the desired \textbf{region shape}, and then assign them to attributes.
+Repeat this process for all images in the folder. See below for an example using VIA's demo file.
+
+\includegraphics[width=30.78in]{./imgs/viademo}
+
+If you must stop midway, save your project by clicking on the \textbf{Settings} pane
+in the menu bar and following the instructions. This will allow you to load in
+your previously saved progress directly in the future, rather than starting from the
+demo.
+
+When finished, export your annotations as a \texttt{.csv} and \texttt{.json} file for use in the machine learning model. Here is an example CSV-file output, containing information about the file and
+region attributes.
+
+\includegraphics[width=30.44in]{./imgs/outputcsvimg}
+
+\hypertarget{for-hubbard-brook-users}{%
+\subsection{For Hubbard Brook Users}\label{for-hubbard-brook-users}}
+
+In our project, the classified images outputted from VIA are the \emph{training data} for the machine learning model to classify snow, ice, and leaf cover. Our project used 12 different attributes,
+including \texttt{ice\_t} (transparent ice), \texttt{leaf\_green}, \texttt{leaf\_fall}, \texttt{open\_water}, and
+\texttt{snow\_o} (opaque snow), among others.
+
+To load the attributes that we used in our project, clicking this \href{./imgs/hbwater_cameratrap_demo.json}{link} will open a text file. Copy the contents
+of this file and save it as a \texttt{.json} file. Then, select load project from the menu bar,
+and upload the \texttt{.json} file. This loads a sample image and all 12 attribute classifications.
+
+Ideally, for each image, obtain at least 20 labels.
+
+\hypertarget{random-forest-image-classification}{%
+\section{Random Forest Image Classification}\label{random-forest-image-classification}}
+
+The last step in the data pipeline is to run a random forest model to classify images.
+The script for running the machine learning model is \texttt{ml\_model\_final.ipynb} (hosted in Jupyter Notebook).
+
+\hypertarget{introduction-to-random-forest}{%
+\subsection{Introduction to Random Forest}\label{introduction-to-random-forest}}
+
+Our machine learning model used a random forest model, which is a type of ensemble learning method for classification. It works by taking a set number of decision trees all operating independently, and outputting the result selected by the largest number of trees.
+
+We chose a RF model for machine learning because it typically does a better job of not \textbf{overfitting}. This was important for our study at Hubbard Brook, because our images contained a large class imbalance. See the image below for an example class distribution (opaque snow and dark open water were far more prevalent than riffles/green leaves at this location).
+
+\includegraphics[width=2\linewidth]{./imgs/pixelclasses}
+
+Other benefits of the random forest model are that it easily provides variable/feature importance, which is useful when evaluating the moderl's performance. Additionally, we have tried an unsupervised learning approach with a convolutional neural network (CNN), which did not perform well on images with both leaves and ice.
+
+\hypertarget{using-the-script-1}{%
+\subsection{Using the Script}\label{using-the-script-1}}
+
+\hypertarget{data-preparation}{%
+\subsubsection{Data Preparation}\label{data-preparation}}
+
+First, load in all necessary packages.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ seaborn }\ImportTok{as}\NormalTok{ sns}
+\ImportTok{from}\NormalTok{ sklearn.model\_selection }\ImportTok{import}\NormalTok{ train\_test\_split, RandomizedSearchCV,GridSearchCV}
+\ImportTok{from}\NormalTok{ sklearn.ensemble }\ImportTok{import}\NormalTok{ RandomForestClassifier}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ classification\_report,confusion\_matrix, accuracy\_score}
+\ImportTok{from}\NormalTok{ sklearn.metrics }\ImportTok{import}\NormalTok{ ConfusionMatrixDisplay}
+\ImportTok{import}\NormalTok{ os}
+\OperatorTok{\%}\NormalTok{matplotlib inline}
+\ImportTok{from}\NormalTok{ PIL }\ImportTok{import}\NormalTok{ Image}
+\ImportTok{import}\NormalTok{ warnings}
+\NormalTok{warnings.filterwarnings(}\StringTok{"ignore"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The first step is to wrangle the data so it can be fed into the model. Read in your \texttt{.csv} files and run all the code chunks
+
+The below code chunk contains the functions for data wrangling which create data and temperature columns for the dataframe, as well as sampling from each class.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ wrangle\_data(df):}
+    \CommentTok{\textquotesingle{}\textquotesingle{}\textquotesingle{}}
+\CommentTok{    Create date and temperature columns for dataframes}
+\CommentTok{    \textquotesingle{}\textquotesingle{}\textquotesingle{}}
+    \CommentTok{\# remove duplicate RGB}
+\NormalTok{    df }\OperatorTok{=}\NormalTok{ df.drop\_duplicates()}
+\NormalTok{    df[}\StringTok{"date"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.to\_datetime(df[}\StringTok{"date"}\NormalTok{])}
+\NormalTok{    df[}\StringTok{"temperature"}\NormalTok{] }\OperatorTok{=}\NormalTok{ df.temperature.}\BuiltInTok{apply}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ a: }\BuiltInTok{float}\NormalTok{(a[:}\OperatorTok{{-}}\DecValTok{1}\NormalTok{]) }\ControlFlowTok{if} \BuiltInTok{type}\NormalTok{(a) }\OperatorTok{!=} \BuiltInTok{float} \ControlFlowTok{else}\NormalTok{ np.nan)}
+    \ControlFlowTok{return}\NormalTok{ df}
+
+\KeywordTok{def}\NormalTok{ pick\_samples(df):}
+    \CommentTok{\textquotesingle{}\textquotesingle{}\textquotesingle{}}
+\CommentTok{    pick samples from each class with defined max class size}
+\CommentTok{    \textquotesingle{}\textquotesingle{}\textquotesingle{}}
+\NormalTok{    sampled\_df }\OperatorTok{=}\NormalTok{ df.head(}\DecValTok{1}\NormalTok{)}
+\NormalTok{    max\_class\_size }\OperatorTok{=} \DecValTok{100}
+    \ControlFlowTok{for}\NormalTok{ date }\KeywordTok{in}\NormalTok{ df.orig\_name.unique():}
+\NormalTok{        date\_grouped }\OperatorTok{=}\NormalTok{ df[df.orig\_name}\OperatorTok{==}\NormalTok{date]}
+\NormalTok{        nth }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(date\_grouped)}\OperatorTok{//}\NormalTok{max\_class\_size}
+        \ControlFlowTok{if}\NormalTok{ nth}\OperatorTok{==}\DecValTok{0}\NormalTok{:}
+\NormalTok{            sampled\_df }\OperatorTok{=}\NormalTok{ pd.concat([sampled\_df,date\_grouped])}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            curr\_group }\OperatorTok{=}\NormalTok{ date\_grouped.iloc[::nth,:]}
+\NormalTok{            sampled\_df }\OperatorTok{=}\NormalTok{ pd.concat([sampled\_df,curr\_group])}
+\NormalTok{    sampled\_df.drop\_duplicates(inplace}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ sampled\_df}
+\end{Highlighting}
+\end{Shaded}
+
+After the data wrangling is complete, the notebook first runs the model - the low accuracy will be corrected through the next step of hyperparameter tuning.
+
+\hypertarget{hyperparameter-tuning}{%
+\subsubsection{Hyperparameter Tuning}\label{hyperparameter-tuning}}
+
+Hyperparameter tuning is the process which helps select the optimal model architecture. For instance, one such question is: how many trees should I include in my random forest?
+
+We used two tuning methods, grid search and random search.
+- Grid search builds a model for each one of the possible hyperparameter values, and selects the model with the best results.
+- Random search defines distributions for the hyperparameters, and not all values are tested - values tested are selected at random.
+
+\hypertarget{training-random-forest-model}{%
+\subsubsection{Training Random Forest Model}\label{training-random-forest-model}}
+
+Advance to the section titled \textbf{Train Random Forest Model}. The first section creates the functions for training the model. It splits the dataset into training and test sets and then fits the model. The second function plots the confusion matrix displaying the model's accuracy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ split\_fit\_basic\_report(df):}
+    \CommentTok{"""}
+\CommentTok{    Split dataset into training and test, fit model using default RCF parameters}
+\CommentTok{    return model, prediction, feature\_importances, X\_train, X\_test, y\_train, y\_test}
+\CommentTok{    """}
+\NormalTok{    X }\OperatorTok{=}\NormalTok{ df.drop(}\StringTok{\textquotesingle{}class\textquotesingle{}}\NormalTok{,axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}class\textquotesingle{}}\NormalTok{] }
+\NormalTok{    X\_train, X\_test, y\_train, y\_test }\OperatorTok{=}\NormalTok{ train\_test\_split(X, y, test\_size}\OperatorTok{=}\FloatTok{0.30}\NormalTok{, random\_state}\OperatorTok{=}\DecValTok{1}\NormalTok{, stratify}\OperatorTok{=}\NormalTok{y)}
+\NormalTok{    rfc }\OperatorTok{=}\NormalTok{ RandomForestClassifier(random\_state }\OperatorTok{=} \DecValTok{1}\NormalTok{)}
+\NormalTok{    rfc.fit(X\_train, y\_train)}
+    \CommentTok{\# predict on test data}
+\NormalTok{    rfc\_pred }\OperatorTok{=}\NormalTok{ rfc.predict(X\_test)}
+    \BuiltInTok{print}\NormalTok{(classification\_report(y\_test,rfc\_pred))}
+\NormalTok{    feature\_val }\OperatorTok{=}\NormalTok{ pd.DataFrame(rfc.feature\_importances\_, index }\OperatorTok{=}\NormalTok{ X\_train.columns)}
+    \BuiltInTok{print}\NormalTok{(feature\_val.sort\_values(}\DecValTok{0}\NormalTok{, ascending}\OperatorTok{=}\VariableTok{False}\NormalTok{))}
+    \ControlFlowTok{return}\NormalTok{ rfc, rfc\_pred,feature\_val,  X\_train, X\_test, y\_train, y\_test}
+
+\KeywordTok{def}\NormalTok{ plot\_cm(y\_test, rfc\_pred):}
+    \CommentTok{"""}
+\CommentTok{    plot confusion matrix of model predictions}
+\CommentTok{    """}
+\NormalTok{    p,ax }\OperatorTok{=}\NormalTok{ plt.subplots(figsize}\OperatorTok{=}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{20}\NormalTok{))}
+
+\NormalTok{    ConfusionMatrixDisplay.from\_predictions(y\_test, rfc\_pred, ax}\OperatorTok{=}\NormalTok{ax, colorbar}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{    plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+Run the subsequent code chunks to use grid search CV and random search CV to select the best estimators for the model. After this is done, we then test the model on unseen data which is not used for training/testing.
+
+\hypertarget{generating-reclassified-images}{%
+\subsubsection{Generating Reclassified Images}\label{generating-reclassified-images}}
+
+The last section in the workbook is how we visualize the results of our model. We use the model to generate a reclassified image containing pixel predictions for the region of interest. The first section is a dictionary mapping each attribute to the color it will appear in the image, which can be tweaked based on personal preference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{li }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}R\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}temperature\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}month\textquotesingle{}}\NormalTok{,}
+       \StringTok{\textquotesingle{}season\_autumn\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}season\_spring\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}season\_winter\textquotesingle{}}\NormalTok{]}
+\KeywordTok{def}\NormalTok{ display\_predict\_img(}\BuiltInTok{file}\NormalTok{):}
+\NormalTok{    img}\OperatorTok{=}\NormalTok{ np.asarray(Image.}\BuiltInTok{open}\NormalTok{(}\StringTok{"invert\_"}\OperatorTok{+}\BuiltInTok{file}\NormalTok{))}
+\NormalTok{    img\_cp }\OperatorTok{=}\NormalTok{ img.copy()}
+\NormalTok{    ind }\OperatorTok{=}\NormalTok{np.where((img[:,:,}\DecValTok{0}\NormalTok{]}\OperatorTok{!=}\DecValTok{0}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (img[:,:,}\DecValTok{1}\NormalTok{]}\OperatorTok{!=}\DecValTok{0}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (img[:,:,}\DecValTok{2}\NormalTok{]}\OperatorTok{!=}\DecValTok{0}\NormalTok{))}
+\NormalTok{    y\_vals }\OperatorTok{=}\NormalTok{ ind[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    x\_vals }\OperatorTok{=}\NormalTok{ ind[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    \_}\OperatorTok{=}\NormalTok{ img[y\_vals,x\_vals,:]}
+\NormalTok{    r\_vals, g\_vals, b\_vals }\OperatorTok{=}\NormalTok{ \_[:,}\DecValTok{0}\NormalTok{], \_[:,}\DecValTok{1}\NormalTok{], \_[:,}\DecValTok{2}\NormalTok{]}
+\NormalTok{    fl }\OperatorTok{=}\NormalTok{ merged[merged.orig\_name}\OperatorTok{==}\BuiltInTok{file}\NormalTok{][li].head(}\DecValTok{1}\NormalTok{)}
+\NormalTok{    point }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{: x\_vals,}
+     \StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{: y\_vals,}
+     \StringTok{\textquotesingle{}R\textquotesingle{}}\NormalTok{: r\_vals,}
+     \StringTok{\textquotesingle{}G\textquotesingle{}}\NormalTok{: g\_vals,}
+     \StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{: b\_vals,}
+\NormalTok{    \})}
+\NormalTok{    point[}\StringTok{\textquotesingle{}temperature\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.temperature.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.year.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}week\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.week.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}month\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.month.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}season\_autumn\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.season\_autumn.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}season\_spring\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.season\_spring.values[}\DecValTok{0}\NormalTok{]}
+\NormalTok{    point[}\StringTok{\textquotesingle{}season\_winter\textquotesingle{}}\NormalTok{]}\OperatorTok{=}\NormalTok{ fl.season\_winter.values[}\DecValTok{0}\NormalTok{]}
+    
+\NormalTok{    pr }\OperatorTok{=}\NormalTok{ model.predict(point)}
+\NormalTok{    point[}\StringTok{"pred\_class"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pr}
+    \KeywordTok{def}\NormalTok{ apply\_change(row):}
+\NormalTok{        pred }\OperatorTok{=}\NormalTok{ row[}\StringTok{"pred\_class"}\NormalTok{]}
+\NormalTok{        newR, newG, newB}\OperatorTok{=}\NormalTok{colors[class\_rgb[pred]]}
+\NormalTok{        img\_cp[row.y,row.x,:] }\OperatorTok{=}\NormalTok{ [newR, newG,newB]}
+\NormalTok{    point.}\BuiltInTok{apply}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: apply\_change(x), axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{    f, ax }\OperatorTok{=}\NormalTok{ plt.subplots(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{    ax[}\DecValTok{0}\NormalTok{].imshow(img)}
+\NormalTok{    ax[}\DecValTok{1}\NormalTok{].imshow(img\_cp)}
+\NormalTok{    f.set\_figheight(}\DecValTok{15}\NormalTok{)}
+\NormalTok{    f.set\_figwidth(}\DecValTok{15}\NormalTok{)}
+
+    \ControlFlowTok{return}\NormalTok{ img, img\_cp, point}
+\end{Highlighting}
+\end{Shaded}
+
+This function uses the model output to re-map the image. Below are some outputs generated by the model. The first image shows the model does an excellent job distinguishing between snow and water, practically mapping out the original image exactly. The second image is a bit more ambiguous with a mixture of submerged leaves, ice, and rock, but the model is still able to predict them fairly accurately.
+
+\includegraphics[width=2\linewidth]{./imgs/snowice_output}
+\includegraphics[width=2\linewidth]{./imgs/output2}
+
+\hypertarget{future-improvements}{%
+\subsection{Future Improvements}\label{future-improvements}}
+
+While our model achieved a high accuracy and recall of 96\% for our images, there are still areas for fine-tuning and improvement. For one, the model was occasionally less accurate when attempting to differentiate between water and leaves/rocks in the stream channel, as well as other classes less prevalent in the training set. This is the case in the image here:
+
+\includegraphics[width=2\linewidth]{./imgs/leafrock_output}
+
+Thus, in the future, exposing the model to more training data with these classes can improve its accuracy. Additionally, the model can be expanded to differentiate between different types of ice, which can be of use to researchers studying ice jams - this is just one of many potential changes.
+
+\end{document}

@@ -1,4 +1,4 @@
-# Rename Raw Images
+# Rename Raw Images- Python Option
 
 Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.
 

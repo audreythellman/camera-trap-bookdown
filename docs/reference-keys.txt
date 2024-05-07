@@ -5,6 +5,9 @@ how-to-use-this-book
 data-pipeline-overview
 rename-raw-images
 google-drive-files
+load-packages-and-fucntions
+rename-raw-images-1
+google-drive-files-1
 load-packages
 mount-google-drive
 copying-files
@@ -39,3 +42,7 @@ hyperparameter-tuning
 training-random-forest-model
 generating-reclassified-images
 future-improvements
+r-option
+renaming-files-using-local-folder-directory
+rename-raw-images---r-option
+rename-raw-images--python-option

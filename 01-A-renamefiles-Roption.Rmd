@@ -1,0 +1,102 @@
+# Rename Raw Images - R option
+
+Renaming images is the first key step in this data processing pipeline. For our study, field camera traps in various watersheds at Hubbard Brook Experimental Forest took one photo each day over a time span of several years. The original file names were a non-descriptive series of numbers, following this step, they will contain information about the watershed the photo was taken at as well as time-series image metadata.
+
+These steps were designed to process files stored in a shared Google Drive by identifying the *folder* location as a google drive id, which can be found as the last section within the google drive URL.For example the bolded section within the following URL is the google drive folder id "https://drive.google.com/drive/u/0/folders/*12oN46qMczIh6zsQXxb1Dl9aVuH3a5p7a*. This is the same for the desired final folder location. 
+
+We have also included the ability to use local directory for images. Before renaming images contained in a local directory, a few modifications to the script will need to be made; however, the same general principles will still apply. For instructions on running the script on files on your local computer rather than in Google Drive, see **Section 1.2**. 
+
+
+## Google Drive Files
+
+### Load Packages and Fucntions
+
+```{r setup, include=FALSE}
+source("R/lib_rename-Roption.R")
+```
+
+#Shared Google Drive Workflow 
+
+The following workflow is set to the folders associated with Stream Field Camera Uploads to Hubbard Brook Rosi (HB WatER) Google Drive. Modify the google drive folder id and shared_drive details if a different drive is being used. The user must have authorized access to the Hubbard Brook Rosi (HB WatER) folder to use the following chunk, and will be asked to authorize using their associated Google account login. 
+
+The workflow is set up to rename *and move* the images, please double check locations are correct. 
+
+The script for renaming files is designed with Hubbard Brook images in mind. The format for an image's new name is Hbwtr_*watershed number*_*date*_*time*.JPG.
+The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.Therefore, all folders that contain images *must start with the watershed id*, for example "W2_", the remaining folder names are not utilized. 
+
+Files will be renamed within the folder structure, the output file will contain the original folder name, the renamed file, and associated information, and will be placed in the working directory. 
+
+```{r HBWater Stream Photo Workflow, eval=FALSE}
+#Updating for R
+# Authorize Google Drive Connection 
+# Will ask user for Oauth access credentials
+drive_auth(use_oob = TRUE, cache = TRUE)
+info <- drive_about()
+
+#Newly_uploaded_data folder is "1__cu4PCaLqcrIRTcbnjv1kcQeBoT03jI"
+folder_df = drive_ls(as_id("1__cu4PCaLqcrIRTcbnjv1kcQeBoT03jI"), shared_drive = "Hubbard Brook Rosi (HB WatER)")
+all_folder_Dir = folder_df[['name']][grepl("^W.*", folder_df[['name']])]  #folders that start with W. 
+
+#Desired Location for Renamed Images
+new_folder_df = drive_ls(as_id("19DyxgtprkcqbDBuKmMioJg6B86oXDa9K"), shared_drive = "Hubbard Brook Rosi (HB WatER)")
+
+#Set up tempfile
+temp <- tempfile(fileext = ".jpeg")
+
+# iterate through all folders available that start with W - the folder nomenclature has to be W then the number of the watershed "W#"
+mv_projectdir <- lapply(all_folder_Dir, function(folder_dir){ #testing "W9 GC Channel 11-6-20 thru 5-9-21"
+    print(folder_dir)
+  #For shared google drive runs  
+    folder_nm <- folder_dir #name
+  #Find google drive id for folder with saved images
+    folder_id <- dplyr::filter(folder_df, name == folder_dir)%>%
+    as_id(id) #drive folder id
+    watershed_id = str_sub(folder_nm, 1, 2) #watershed based on first two characters
+    print(watershed_id)
+
+    #location where all images should be saved to
+    new_img_folder <- dplyr::filter(new_folder_df, name == watershed_id)%>%
+      as_id(id) #output folder id
+    
+    watershed_id = tolower(str_sub(folder_nm, 1, 2))
+    
+    print(new_img_folder)
+    
+  output <- rename_cameraimage(folder_dir = folder_id, new_dir = new_img_folder, googledrive_dir = TRUE)
+  # add column with the original folder name image came from
+  output$folder_nm <- folder_nm
+  #save on iteration, in case folder fails
+  write.csv(output, paste0("rename_", folder_nm, ".csv"))
+  return(output)
+  }
+)
+```
+
+## Renaming files using local folder directory 
+
+The workflow is set up to rename *and move* the images, please double check directory locations are correct. It is recommended that you test with single file before applying to group of files and/or folders. This software is not guaranteed. 
+
+The script for renaming files is designed with Hubbard Brook images in mind. The format for an image's new name is Hbwtr_*watershed number*_*date*_*time*.JPG.
+
+The date and time elements are extracted from the image, whereas the watershed number
+is part of the name of the source directory.Therefore, all folders that contain images *must start with the watershed id*, for example "W2_", the remaining folder names are not utilized. 
+
+```{r For Local Folder Use, eval =FALSE}
+image_path = "G:\\Shared drives\\Hubbard Brook Rosi (HB WatER)\\2_Camera Trap photos\\Stream Photos\\Newly_uploaded_data"
+folders = list.dirs(image_path, recursive = FALSE)
+
+all_folder_Dir = folders[stringr::str_detect(basename(normalizePath(folders)), "W")] #only folders that start with W
+new_img_dir  = "C:\\Users\\_HubbardBrook_\\CameraImages"
+
+mv_projectdir <- lapply(all_folder_Dir, function(folder_dir){
+    watershed_id = tolower(str_sub(basename(normalizePath(folder_dir)), 1, 2))
+  print(watershed_id)     
+    output <- rename_cameraimage(folder_dir = folder_dir, new_dir = new_img_dir, googledrive_dir = FALSE)
+
+  #save on iteration, in case folder fails
+  write.csv(output, paste0("rename_", folder_nm, ".csv"))
+  return(output)
+})
+
+```
